@@ -112,6 +112,10 @@ func Get(addr string) (*Config, error) {
 		return nil, err
 	}
 
+	if res.StatusCode != http.StatusOK {
+		return nil, errors.New(fmt.Sprintf("Non-OK HTTP status: %s", res.StatusCode))
+	}
+
 	if res.Body != nil {
 		defer res.Body.Close()
 	}
