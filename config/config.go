@@ -2,6 +2,7 @@ package config
 
 import (
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"net"
 	"net/http"
@@ -39,6 +40,49 @@ func getMacAddr() (string, error) {
 		return r, nil
 	}
 	return "", nil
+}
+
+func GetBHiveConfig(addr string) (*BHive, error) {
+	httpClient := http.Client{
+		Timeout: time.Second * 10,
+	}
+
+	req, err := http.NewRequest(http.MethodGet, addr, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := httpClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+
+	if res.Body != nil {
+		defer res.Body.Close()
+	}
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	config := Config{}
+	err = json.Unmarshal(body, &config)
+	if err != nil {
+		return nil, err
+	}
+	mac, err := getMacAddr()
+	if err != nil {
+		return nil, err
+	}
+	for _, bhive := range config.BHives {
+		if bhive.BHiveID == mac {
+			return &bhive, nil
+		}
+	}
+
+	return nil, errors.New("No bHive config found for this Raspberry Pi")
+
 }
 
 func Get(addr string) (*Config, error) {
