@@ -3,6 +3,7 @@ package config
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net"
 	"net/http"
@@ -55,6 +56,10 @@ func GetBHiveConfig(addr string) (*BHive, error) {
 	res, err := httpClient.Do(req)
 	if err != nil {
 		return nil, err
+	}
+
+	if res.StatusCode != http.StatusOK {
+		return nil, errors.New(fmt.Sprintf("Non-OK HTTP status: %s", res.StatusCode))
 	}
 
 	if res.Body != nil {
