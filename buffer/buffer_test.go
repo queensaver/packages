@@ -3,7 +3,7 @@ package buffer
 import (
 	"testing"
   "github.com/google/go-cmp/cmp"
-	"github.com/wogri/bbox/packages/temperature"
+	"github.com/btelemetry/packages/temperature"
 )
 
 func TestBufferAppend(t *testing.T) {
