@@ -1,1 +1,1 @@
-module github.com/wogri/bbox/packages/temperature
+module github.com/btelemetry/packages/temperature
