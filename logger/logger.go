@@ -1,5 +1,7 @@
 package logger
 
+// This is a logging module that enforces structured logging. 
+
 import (
     "github.com/sirupsen/logrus"
 )
