@@ -10,9 +10,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/wogri/bbox/packages/logger"
-	"github.com/wogri/bbox/packages/scale"
-	"github.com/wogri/bbox/packages/temperature"
+	"github.com/btelemetry/packages/logger"
+	"github.com/btelemetry/packages/scale"
+	"github.com/btelemetry/packages/temperature"
 )
 
 type Buffer struct {

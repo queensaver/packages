@@ -1,3 +1,3 @@
-module github.com/wogri/bbox/packages/config
+module github.com/btelemetry/packages/config
 
 go 1.16

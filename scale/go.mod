@@ -1,1 +1,1 @@
-module github.com/wogri/bbox/packages/scale
+module github.com/btelemetry/packages/scale
