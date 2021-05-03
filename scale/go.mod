@@ -1,1 +1,1 @@
-module github.com/btelemetry/packages/scale
+module github.com/queensaver/packages/scale

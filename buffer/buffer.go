@@ -10,9 +10,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/btelemetry/packages/logger"
-	"github.com/btelemetry/packages/scale"
-	"github.com/btelemetry/packages/temperature"
+	"github.com/queensaver/packages/logger"
+	"github.com/queensaver/packages/scale"
+	"github.com/queensaver/packages/temperature"
 )
 
 type Buffer struct {

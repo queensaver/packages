@@ -1,1 +1,1 @@
-module github.com/btelemetry/packages/temperature
+module github.com/queensaver/packages/temperature

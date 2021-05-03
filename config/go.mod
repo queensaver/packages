@@ -1,3 +1,3 @@
-module github.com/btelemetry/packages/config
+module github.com/queensaver/packages/config
 
 go 1.16

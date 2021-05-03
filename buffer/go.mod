@@ -1,4 +1,4 @@
-module github.com/btelemetry/packages/buffer
+module github.com/queensaver/packages/buffer
 
 go 1.15
 
