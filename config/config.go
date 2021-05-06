@@ -12,18 +12,17 @@ import (
 )
 
 type Config struct {
-	BBoxID    string // This is usually the Mac address of the raspberry pi in the BBox
-	BHives    []BHive
-	AuthToken string
+	BboxId    string // This is usually the Mac address of the raspberry pi in the BBox
+	Bhive     []BHive
+	Schedule  string  // Cron schedule from "github.com/robfig/cron/v3"
 }
 
 type BHive struct {
-	BHiveID            string  //BHiveID is usually the Mac address of the raspberry pi in the bHive.
-	RelayGPIO          int     // The GPIO the relay is configured for.
+	BhiveId            string  //BHiveID is usually the Mac address of the raspberry pi in the bHive.
+	RelayGpio          int     // The GPIO the relay is configured for.
 	ScaleOffset        int     // The offset in grams we substract from the measurement to tare it.
 	ScaleReferenceUnit float64 // The reference unit we divide the measurement by to get the desired unit.
 	Cameras            int     // Number of cameras in the BHive
-	Schedule           string  // Cron schedule from "github.com/robfig/cron/v3"
 }
 
 func (s *Config) String() ([]byte, error) {
@@ -80,8 +79,8 @@ func GetBHiveConfig(addr string) (*BHive, error) {
 	if err != nil {
 		return nil, err
 	}
-	for _, bhive := range config.BHives {
-		if bhive.BHiveID == mac {
+	for _, bhive := range config.Bhive {
+		if bhive.BhiveId == mac {
 			return &bhive, nil
 		}
 	}
@@ -90,7 +89,7 @@ func GetBHiveConfig(addr string) (*BHive, error) {
 
 }
 
-func Get(addr string) (*Config, error) {
+func Get(addr string, token string) (*Config, error) {
 	httpClient := http.Client{
 		Timeout: time.Second * 10,
 	}
@@ -100,7 +99,7 @@ func Get(addr string) (*Config, error) {
 		return nil, err
 	}
 
-	req.Header.Set("Auth-Token", "1234")
+	req.Header.Set("Q-Token", token)
 	mac, err := getMacAddr()
 	if err != nil {
 		return nil, err
