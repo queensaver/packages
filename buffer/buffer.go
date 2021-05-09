@@ -64,7 +64,7 @@ func (h HttpPostClient) PostData(request string, data interface{}) error {
 		return err
 	}
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Token", h.Token)
+	req.Header.Set("Q-Token", h.Token)
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
