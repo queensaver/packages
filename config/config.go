@@ -20,7 +20,7 @@ type Config struct {
 type BHive struct {
 	BhiveId            string  //BHiveID is usually the Mac address of the raspberry pi in the bHive.
 	RelayGpio          int     // The GPIO the relay is configured for.
-	ScaleOffset        int     // The offset in grams we substract from the measurement to tare it.
+	ScaleOffset        float64 // The offset in grams we substract from the measurement to tare it.
 	ScaleReferenceUnit float64 // The reference unit we divide the measurement by to get the desired unit.
 	Cameras            int     // Number of cameras in the BHive
 }
