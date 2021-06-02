@@ -5,9 +5,10 @@ import (
 )
 
 type Scale struct {
-	Weight    float64
-	BhiveId   string //BHiveID is usually the Mac address of the raspberry pi in the bHive.
-	Epoch int64
+  Weight    float64 `json:"weight,omitempty"`
+  //BHiveID is usually the Mac address of the raspberry pi in the bHive.
+	BhiveId   string `json:"bhiveId,omitempty"`
+	Epoch int64 `json:"epoch,omitempty"`
 }
 
 func (s *Scale) String() ([]byte, error) {
