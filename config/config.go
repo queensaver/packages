@@ -25,7 +25,7 @@ type BHive struct {
 	Cameras            int     // Number of cameras in the BHive
 }
 
-func (s *Config) String() ([]byte, error) {
+func (s Config) String() ([]byte, error) {
 	return json.MarshalIndent(s, "", "  ")
 }
 
