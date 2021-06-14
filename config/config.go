@@ -12,9 +12,9 @@ import (
 )
 
 type Config struct {
-	BboxId    string // This is usually the Mac address of the raspberry pi in the BBox
-	Bhive     []BHive
-	Schedule  string  // Cron schedule from "github.com/robfig/cron/v3"
+	BboxId   string // This is usually the Mac address of the raspberry pi in the BBox
+	Bhive    []BHive
+	Schedule string // Cron schedule from "github.com/robfig/cron/v3"
 }
 
 type BHive struct {
@@ -22,6 +22,7 @@ type BHive struct {
 	RelayGpio          int     // The GPIO the relay is configured for.
 	ScaleOffset        float64 // The offset in grams we substract from the measurement to tare it.
 	ScaleReferenceUnit float64 // The reference unit we divide the measurement by to get the desired unit.
+	Local              bool    // if the bhive software runs locally this is set to true.
 	Cameras            int     // Number of cameras in the BHive
 }
 
