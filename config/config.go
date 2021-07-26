@@ -15,6 +15,7 @@ type Config struct {
 	BboxId   string // This is usually the Mac address of the raspberry pi in the BBox
 	Bhive    []BHive
 	Schedule string // Cron schedule from "github.com/robfig/cron/v3"
+	Local    bool   //If the bhive is the same box ad the bbox
 }
 
 type BHive struct {
@@ -23,6 +24,7 @@ type BHive struct {
 	ScaleOffset        float64 // The offset in grams we substract from the measurement to tare it.
 	ScaleReferenceUnit float64 // The reference unit we divide the measurement by to get the desired unit.
 	Local              bool    // if the bhive software runs locally this is set to true.
+	WittyPi            bool    //If the bhive has a witty pi to wake it up
 	Cameras            int     // Number of cameras in the BHive
 }
 
