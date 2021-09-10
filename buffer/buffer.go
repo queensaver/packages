@@ -10,14 +10,19 @@ import (
 	"sync"
 	"time"
 
+	"github.com/queensaver/bbox/server/scheduler"
 	"github.com/queensaver/packages/logger"
 	"github.com/queensaver/packages/scale"
 	"github.com/queensaver/packages/temperature"
 )
 
 type Buffer struct {
-	temperatures []temperature.Temperature
-	scales       []scale.Scale
+	temperatures       []temperature.Temperature
+	scales             []scale.Scale
+	shutdownDesired    bool // If true it will actually physically shutdown the raspberry pi after all data is flushed. It will use the wittypi module to wake up the raspberry pi afterwards.
+	temperatureFlushed bool // Set to true if the temperature has been flushed (only useful with shutdownDesired == true)
+	scaleFlushed       bool // Set to true if the scale has been flushed (only useful with shutdowDesired  == true)
+	schedule           *scheduler.Schedule
 }
 
 type BufferError struct {
@@ -83,6 +88,16 @@ func (b *Buffer) String() string {
 	return fmt.Sprintf("%v\n%v", b.temperatures, b.scales)
 }
 
+func (b *Buffer) SetSchedule(schedule *scheduler.Schedule) {
+	b.schedule = schedule
+}
+
+func (b *Buffer) SetShutdownDesired(s bool) {
+	b.shutdownDesired = s
+}
+
+// FlushSchedule will wait for the given duration of seconds and then flush the buffer.
+// It will be started as a go routine and retry to flush the buffer.
 func (b *Buffer) FlushSchedule(apiServerAddr *string, token string, seconds int) {
 	poster := HttpPostClient{*apiServerAddr, token}
 	for {
@@ -114,6 +129,9 @@ func (b *Buffer) Flush(ip string, poster HttpClientPoster) error {
 			last_err = err
 			b.temperatures = append(b.temperatures, t)
 		}
+		if b.shutdownDesired {
+			b.temperatureFlushed = true
+		}
 	}
 
 	// Repeat the same thing as above with scale.
@@ -129,6 +147,16 @@ func (b *Buffer) Flush(ip string, poster HttpClientPoster) error {
 		if err != nil {
 			last_err = err
 			b.scales = append(b.scales, s)
+		}
+		if b.shutdownDesired {
+			b.scaleFlushed = true
+		}
+	}
+	if b.shutdownDesired && b.temperatureFlushed && b.scaleFlushed {
+		res := b.schedule.Shutdown()
+		if res == false {
+			b.scaleFlushed = false
+			b.temperatureFlushed = false
 		}
 	}
 
