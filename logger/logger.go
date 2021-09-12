@@ -12,8 +12,7 @@ import (
 )
 
 var (
-	logger *zap.Logger
-	sugar  *zap.SugaredLogger
+	sugar *zap.SugaredLogger
 )
 
 func init() {
