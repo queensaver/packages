@@ -3,6 +3,7 @@ package logger
 // This is a logging module that enforces structured logging.
 
 import (
+	"flag"
 	"os"
 	"time"
 
@@ -12,7 +13,8 @@ import (
 )
 
 var (
-	sugar *zap.SugaredLogger
+	sugar   *zap.SugaredLogger
+	verbose = flag.Bool("verbose", false, "Turn on more verbose logging")
 )
 
 func init() {
@@ -20,11 +22,14 @@ func init() {
 	config.EncodeTime = func(ts time.Time, encoder zapcore.PrimitiveArrayEncoder) {
 		encoder.AppendString(ts.UTC().Format(time.RFC3339Nano))
 	}
-
+	level := zapcore.InfoLevel
+	if *verbose || os.Getenv("VERBOSE") != "" {
+		level = zapcore.DebugLevel
+	}
 	logger := zap.New(zapcore.NewCore(
 		zaplogfmt.NewEncoder(config),
 		os.Stdout,
-		zapcore.DebugLevel,
+		level,
 	))
 
 	defer logger.Sync()
