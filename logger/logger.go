@@ -3,9 +3,12 @@ package logger
 // This is a logging module that enforces structured logging.
 
 import (
-	"log"
+	"os"
+	"time"
 
+	zaplogfmt "github.com/sykesm/zap-logfmt"
 	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 var (
@@ -14,10 +17,17 @@ var (
 )
 
 func init() {
-	logger, err := zap.NewProduction()
-	if err != nil {
-		log.Fatalf("can't initialize zap logger: %v", err)
+	config := zap.NewProductionEncoderConfig()
+	config.EncodeTime = func(ts time.Time, encoder zapcore.PrimitiveArrayEncoder) {
+		encoder.AppendString(ts.UTC().Format(time.RFC3339Nano))
 	}
+
+	logger := zap.New(zapcore.NewCore(
+		zaplogfmt.NewEncoder(config),
+		os.Stdout,
+		zapcore.DebugLevel,
+	))
+
 	defer logger.Sync()
 	sugar = logger.Sugar()
 }
