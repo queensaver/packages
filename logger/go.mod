@@ -1,3 +1,5 @@
 module github.com/queensaver/packages/logger
 
-require github.com/sirupsen/logrus v1.7.0
+go 1.16
+
+require go.uber.org/zap v1.19.1

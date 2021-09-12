@@ -1,55 +1,45 @@
 package logger
 
-// This is a logging module that enforces structured logging. 
+// This is a logging module that enforces structured logging.
 
 import (
-    "github.com/sirupsen/logrus"
+	"log"
+
+	"go.uber.org/zap"
 )
 
 var (
-    log *logrus.Logger
+	logger *zap.Logger
+	sugar  *zap.SugaredLogger
 )
 
 func init() {
-    log = logrus.New()
-    log.Formatter = &logrus.JSONFormatter{}
-    //log.Formatter = &logrus.TextFormatter{}
-    log.SetLevel(logrus.DebugLevel)
-    // TODO: Remove. This is a huge performance penalty.
-    // log.SetReportCaller(true)
+	logger, err := zap.NewProduction()
+	if err != nil {
+		log.Fatalf("can't initialize zap logger: %v", err)
+	}
+	defer logger.Sync()
+	sugar = logger.Sugar()
 }
 
 // TODO: Context logging: https://notes.burke.libbey.me/context-and-logging/
 
-func Debug(ip string, msg string) {
-  log.WithFields(logrus.Fields{
-    "ip": ip,
-  }).Debug(msg)
+func Debug(msg string, keysAndValues ...interface{}) {
+	sugar.Debugw(msg, keysAndValues...)
 }
 
-func Info(ip string, msg string) {
-  log.WithFields(logrus.Fields{
-    "ip": ip,
-  }).Info(msg)
+func Info(msg string, keysAndValues ...interface{}) {
+	sugar.Infow(msg, keysAndValues...)
 }
 
-func Error(ip string, err error) {
-  log.WithFields(logrus.Fields{
-    "ip": ip,
-  }).Error(err)
+func Error(msg string, keysAndValues ...interface{}) {
+	sugar.Errorw(msg, keysAndValues...)
 }
 
-var (
+func Fatal(msg string, keysAndValues ...interface{}) {
+	sugar.Fatalw(msg, keysAndValues...)
+}
 
-    // ConfigError ...
-    ConfigError = "%v type=config.error"
-
-    // HTTPError ...
-    HTTPError = "%v type=http.error"
-
-    // HTTPWarn ...
-    HTTPWarn = "%v type=http.warn"
-
-    // HTTPInfo ...
-    HTTPInfo = "%v type=http.info"
-)
+func Sync() {
+	sugar.Sync()
+}

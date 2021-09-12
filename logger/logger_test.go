@@ -1,12 +1,10 @@
 package logger
 
 import (
-  "testing"
-  // "github.com/wogri/bbox/packages/logger"
+	"testing"
 )
 
-type TestError struct{
-  message string
+type TestError struct {
 }
 
 func (t TestError) Error() string {
@@ -14,6 +12,9 @@ func (t TestError) Error() string {
 }
 
 func TestLogger(t *testing.T) {
-  Error("1.2.3.5", TestError{})
+	e := TestError{}
+	err := e.Error()
+	Error(err,
+		"ip", "1.2.3.4",
+		"bhiveid", "abcdef1234")
 }
-
