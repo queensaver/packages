@@ -1,55 +1,59 @@
 package logger
 
-// This is a logging module that enforces structured logging. 
+// This is a logging module that enforces structured logging.
 
 import (
-    "github.com/sirupsen/logrus"
+	"flag"
+	"os"
+	"time"
+
+	zaplogfmt "github.com/sykesm/zap-logfmt"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 var (
-    log *logrus.Logger
+	sugar   *zap.SugaredLogger
+	verbose = flag.Bool("verbose", false, "Turn on more verbose logging")
 )
 
 func init() {
-    log = logrus.New()
-    log.Formatter = &logrus.JSONFormatter{}
-    //log.Formatter = &logrus.TextFormatter{}
-    log.SetLevel(logrus.DebugLevel)
-    // TODO: Remove. This is a huge performance penalty.
-    // log.SetReportCaller(true)
+	config := zap.NewProductionEncoderConfig()
+	config.EncodeTime = func(ts time.Time, encoder zapcore.PrimitiveArrayEncoder) {
+		encoder.AppendString(ts.UTC().Format(time.RFC3339Nano))
+	}
+	level := zapcore.InfoLevel
+	if *verbose || os.Getenv("VERBOSE") != "" {
+		level = zapcore.DebugLevel
+	}
+	logger := zap.New(zapcore.NewCore(
+		zaplogfmt.NewEncoder(config),
+		os.Stdout,
+		level,
+	))
+
+	defer logger.Sync()
+	sugar = logger.Sugar()
 }
 
 // TODO: Context logging: https://notes.burke.libbey.me/context-and-logging/
 
-func Debug(ip string, msg string) {
-  log.WithFields(logrus.Fields{
-    "ip": ip,
-  }).Debug(msg)
+func Debug(msg string, keysAndValues ...interface{}) {
+	sugar.Debugw(msg, keysAndValues...)
 }
 
-func Info(ip string, msg string) {
-  log.WithFields(logrus.Fields{
-    "ip": ip,
-  }).Info(msg)
+func Info(msg string, keysAndValues ...interface{}) {
+	sugar.Infow(msg, keysAndValues...)
 }
 
-func Error(ip string, err error) {
-  log.WithFields(logrus.Fields{
-    "ip": ip,
-  }).Error(err)
+func Error(msg string, keysAndValues ...interface{}) {
+	sugar.Errorw(msg, keysAndValues...)
 }
 
-var (
+func Fatal(msg string, keysAndValues ...interface{}) {
+	sugar.Fatalw(msg, keysAndValues...)
+}
 
-    // ConfigError ...
-    ConfigError = "%v type=config.error"
-
-    // HTTPError ...
-    HTTPError = "%v type=http.error"
-
-    // HTTPWarn ...
-    HTTPWarn = "%v type=http.warn"
-
-    // HTTPInfo ...
-    HTTPInfo = "%v type=http.info"
-)
+func Sync() {
+	sugar.Sync()
+}
