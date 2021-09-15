@@ -24,7 +24,7 @@ type BHive struct {
 	ScaleOffset        float64 // The offset in grams we substract from the measurement to tare it.
 	ScaleReferenceUnit float64 // The reference unit we divide the measurement by to get the desired unit.
 	Local              bool    // if the bhive software runs locally this is set to true.
-	WittyPi            bool    //If the bhive has a witty pi to wake it up
+	WittyPi            bool    // If the bhive has a witty pi to wake it up
 	Cameras            int     // Number of cameras in the BHive
 }
 
