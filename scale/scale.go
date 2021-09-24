@@ -18,7 +18,11 @@ func (s *Scale) String() ([]byte, error) {
 	return json.MarshalIndent(s, "", "  ")
 }
 
-func (t *Temperature) SetUUID() {
+func (s *Scale) SetUUID() {
 	uuid := uuid.New()
-	t.UUID = uuid.String()
+	s.UUID = uuid.String()
+}
+
+func (s *Scale) GetUUID() string {
+	return s.UUID
 }

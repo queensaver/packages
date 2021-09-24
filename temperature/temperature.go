@@ -22,3 +22,7 @@ func (t *Temperature) SetUUID() {
 	uuid := uuid.New()
 	t.UUID = uuid.String()
 }
+
+func (t *Temperature) GetUUID() string {
+	return t.UUID
+}
