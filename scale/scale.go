@@ -2,6 +2,7 @@ package scale
 
 import (
 	"encoding/json"
+	"github.com/google/uuid"
 )
 
 type Scale struct {
@@ -15,4 +16,9 @@ type Scale struct {
 
 func (s *Scale) String() ([]byte, error) {
 	return json.MarshalIndent(s, "", "  ")
+}
+
+func (t *Temperature) SetUUID() {
+	uuid := uuid.New()
+	t.UUID = uuid.String()
 }

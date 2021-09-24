@@ -2,6 +2,7 @@ package temperature
 
 import (
 	"encoding/json"
+	"github.com/google/uuid"
 )
 
 type Temperature struct {
@@ -15,4 +16,9 @@ type Temperature struct {
 
 func (t *Temperature) String() ([]byte, error) {
 	return json.MarshalIndent(t, "", "  ")
+}
+
+func (t *Temperature) SetUUID() {
+	uuid := uuid.New()
+	t.UUID = uuid.String()
 }
