@@ -9,6 +9,8 @@ import (
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/queensaver/packages/logger"
 )
 
 type Config struct {
@@ -109,7 +111,7 @@ func Get(addr string, token string) (*Config, error) {
 	}
 	req.Header.Set("BBoxID", mac)
 
-	fmt.Printf("Requesting config for BBox ID %s", mac)
+	logger.Info("Requesting config for BBox ID %s", mac)
 	res, err := httpClient.Do(req)
 	if err != nil {
 		return nil, err
