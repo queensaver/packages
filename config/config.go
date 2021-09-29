@@ -111,7 +111,7 @@ func Get(addr string, token string) (*Config, error) {
 	}
 	req.Header.Set("BBoxID", mac)
 
-	logger.Info("Requesting config for BBox ID %s", mac)
+	logger.Info("Requesting config for BBox", "bbox_id", mac)
 	res, err := httpClient.Do(req)
 	if err != nil {
 		return nil, err
