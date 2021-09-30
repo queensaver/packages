@@ -18,6 +18,7 @@ var (
 )
 
 func init() {
+	flag.Parse()
 	config := zap.NewProductionEncoderConfig()
 	config.EncodeTime = func(ts time.Time, encoder zapcore.PrimitiveArrayEncoder) {
 		encoder.AppendString(ts.UTC().Format(time.RFC3339Nano))
