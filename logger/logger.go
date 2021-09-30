@@ -3,7 +3,6 @@ package logger
 // This is a logging module that enforces structured logging.
 
 import (
-	"flag"
 	"os"
 	"time"
 
