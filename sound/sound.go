@@ -12,17 +12,20 @@ type Sound struct {
 	Epoch   int64  `json:"epoch,omitempty"`
 	Error   string `json:"error,omitempty"`
 	UUID    string `json:"uuid,omitempty"`
+	Duration int   `json:"duration,omitempty"`
 }
 
 func (s *Sound) String() ([]byte, error) {
-	return json.MarshalIndent(s, "", "  ")
+	copy := *s
+	copy.Sound = nil
+	return json.MarshalIndent(copy, "", "  ")
 }
 
-func (s *Scale) SetUUID() {
+func (s *Sound) SetUUID() {
 	uuid := uuid.New()
 	s.UUID = uuid.String()
 }
 
-func (s *Scale) GetUUID() string {
+func (s *Sound) GetUUID() string {
 	return s.UUID
 }
