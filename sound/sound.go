@@ -3,18 +3,19 @@ package sound
 import (
 	"encoding/json"
 	"os"
+
 	"github.com/google/uuid"
 )
 
 type Sound struct {
 	Sound []byte `json:"sound,omitempty"`
 	//BHiveID is usually the Mac address of the raspberry pi in the bHive.
-	BhiveId string `json:"bhiveId,omitempty"`
-	Epoch   int64  `json:"epoch,omitempty"`
-	Error   string `json:"error,omitempty"`
-	UUID    string `json:"uuid,omitempty"`
-	Duration int   `json:"duration,omitempty"`
-	FileHandle   os.File `json:"-"`
+	BhiveId    string   `json:"bhiveId,omitempty"`
+	Epoch      int64    `json:"epoch,omitempty"`
+	Error      string   `json:"error,omitempty"`
+	UUID       string   `json:"uuid,omitempty"`
+	Duration   int      `json:"duration,omitempty"`
+	FileHandle *os.File `json:"-"`
 }
 
 func (s *Sound) String() ([]byte, error) {
