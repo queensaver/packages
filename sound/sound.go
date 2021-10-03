@@ -2,6 +2,7 @@ package sound
 
 import (
 	"encoding/json"
+	"os"
 	"github.com/google/uuid"
 )
 
@@ -13,6 +14,7 @@ type Sound struct {
 	Error   string `json:"error,omitempty"`
 	UUID    string `json:"uuid,omitempty"`
 	Duration int   `json:"duration,omitempty"`
+	FileHandle   os.File `json:"-"`
 }
 
 func (s *Sound) String() ([]byte, error) {
