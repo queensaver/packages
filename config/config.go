@@ -27,7 +27,8 @@ type BHive struct {
 	ScaleReferenceUnit float64 // The reference unit we divide the measurement by to get the desired unit.
 	Local              bool    // if the bhive software runs locally this is set to true.
 	WittyPi            bool    // If the bhive has a witty pi to wake it up
-	Cameras            int     // Number of cameras in the BHive
+	RecordSound		bool	// If the bhive should record sound
+	SoundRecordingDuration int32 // The duration of the sound recording in seconds
 }
 
 func (s Config) String() ([]byte, error) {
@@ -63,7 +64,7 @@ func GetBHiveConfig(addr string) (*BHive, error) {
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprintf("Non-OK HTTP status: %s", res.StatusCode))
+		return nil, fmt.Errorf("Non-OK HTTP status: %d", res.StatusCode)
 	}
 
 	if res.Body != nil {
@@ -90,7 +91,7 @@ func GetBHiveConfig(addr string) (*BHive, error) {
 		}
 	}
 
-	return nil, errors.New("No bHive config found for this Raspberry Pi")
+	return nil, errors.New("no bHive config found for this Raspberry Pi")
 
 }
 
@@ -118,7 +119,7 @@ func Get(addr string, token string) (*Config, error) {
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprintf("Non-OK HTTP status: %s", res.StatusCode))
+		return nil, fmt.Errorf("Non-OK HTTP status: %d", res.StatusCode)
 	}
 
 	if res.Body != nil {
