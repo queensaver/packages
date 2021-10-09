@@ -27,6 +27,6 @@ func (s *Scale) GetUUID() string {
 	return s.UUID
 }
 
-func (s *Scale) ClearUUID() string {
+func (s *Scale) ClearUUID() {
 	s.UUID = ""
 }

@@ -30,6 +30,6 @@ func (s *Sound) GetUUID() string {
 	return s.UUID
 }
 
-func (s *Sound) ClearUUID() string {
+func (s *Sound) ClearUUID() {
 	s.UUID = ""
 }
