@@ -26,3 +26,7 @@ func (t *Temperature) SetUUID() {
 func (t *Temperature) GetUUID() string {
 	return t.UUID
 }
+
+func (s *Temperature) ClearUUID() string {
+	s.UUID = ""
+}

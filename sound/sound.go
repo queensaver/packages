@@ -26,3 +26,7 @@ func (s *Scale) SetUUID() {
 func (s *Scale) GetUUID() string {
 	return s.UUID
 }
+
+func (s *Sound) ClearUUID() string {
+	s.UUID = ""
+}
