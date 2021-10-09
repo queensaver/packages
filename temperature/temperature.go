@@ -18,7 +18,7 @@ func (t *Temperature) String() ([]byte, error) {
 	return json.MarshalIndent(t, "", "  ")
 }
 
-func (t *Temperature) SetUUID() {
+func (t *Temperature) GenerateUUID() {
 	uuid := uuid.New()
 	t.UUID = uuid.String()
 }
@@ -29,4 +29,8 @@ func (t *Temperature) GetUUID() string {
 
 func (s *Temperature) ClearUUID() {
 	s.UUID = ""
+}
+
+func (s *Temperature) SetUUID(u string) {
+  s.UUID = u
 }

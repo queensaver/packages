@@ -21,7 +21,7 @@ func (s *Sound) String() ([]byte, error) {
 	return json.MarshalIndent(copy, "", "  ")
 }
 
-func (s *Sound) SetUUID() {
+func (s *Sound) GenerateUUID() {
 	uuid := uuid.New()
 	s.UUID = uuid.String()
 }
@@ -32,4 +32,8 @@ func (s *Sound) GetUUID() string {
 
 func (s *Sound) ClearUUID() {
 	s.UUID = ""
+}
+
+func (s *Sound) SetUUID(u string) {
+	s.UUID = u
 }

@@ -18,7 +18,7 @@ func (s *Scale) String() ([]byte, error) {
 	return json.MarshalIndent(s, "", "  ")
 }
 
-func (s *Scale) SetUUID() {
+func (s *Scale) GenerateUUID() {
 	uuid := uuid.New()
 	s.UUID = uuid.String()
 }
@@ -29,4 +29,8 @@ func (s *Scale) GetUUID() string {
 
 func (s *Scale) ClearUUID() {
 	s.UUID = ""
+}
+
+func (s *Scale) SetUUID(u string) {
+	s.UUID = u
 }
