@@ -1,0 +1,100 @@
+openapi: 3.0.0
+info:
+  title: Queensaver API
+  version: 0.0.1
+  description: Queensaver API to send in sensor data and retrieve it. It's also used for user management.
+
+servers:
+- url: https://api.queensaver.com/v1
+  description: Queensaver API Server
+
+paths: 
+  /users:
+    post:
+      summary: Create a user 
+      description: This call creates a user in the queensaver system.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/user"
+      responses:
+        "200":
+          description: "OK"
+          #content:
+          #  application/json:
+          #    schema:
+          #      $ref: "#/components/schemas/status"
+        "400":
+          description: The provided parameters are incorrect
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorMessage"
+              examples:
+                missingData:
+                  value: "Data is missing."
+
+
+
+components:
+#  parameters:
+#    rowParam:
+#      description: Board row (vertical coordinate)
+#      name: row
+#      in: path
+#      required: true
+#      schema:
+#        $ref: "#/components/schemas/coordinate"
+#    columnParam:
+#      description: Board column (horizontal coordinate)
+#      name: column
+#      in: path
+#      required: true
+#      schema:
+#        $ref: "#/components/schemas/coordinate"
+  schemas:
+    errorMessage:
+      type: string
+      maxLength: 256
+      description: A text message describing an error
+#    board:
+#      type: array
+#      maxItems: 3
+#      minItems: 3
+#      items:
+#        type: array
+#        maxItems: 3
+#        minItems: 3
+#        items:
+#          $ref: "#/components/schemas/mark"
+#    id:
+#      type: integer
+#      minimum: 1
+#      example: 15
+#      description: ID of the object. The ID is usually determined by the DBMS.
+    user:
+      type: object
+      properties:
+        #id:
+        #  $ref: "#/components/schemas/id"
+        username:
+          type: string
+          maxLength: 256
+          description: Username, must be unique to the queensaver system. We encourage using email-addresses here.
+          example: jon@doe.com
+        password:
+          type: string
+          format: password
+          description: Password
+        firstName:
+          type: string
+          maxLength: 256
+          description: First name of the user
+          example: Hans
+        lastName:
+          type: string
+          maxLength: 256
+          description: Last name of the user
+          example: Ecker

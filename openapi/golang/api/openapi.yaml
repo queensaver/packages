@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  description: Queensaver API to send in sensor data and retrieve it. It's also used
+    for user management.
+  title: Queensaver API
+  version: 0.0.1
+servers:
+- description: Queensaver API Server
+  url: https://api.queensaver.com/v1
+paths:
+  /users:
+    post:
+      description: This call creates a user in the queensaver system.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+        required: true
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              examples:
+                missingData:
+                  value: Data is missing.
+              schema:
+                $ref: '#/components/schemas/errorMessage'
+          description: The provided parameters are incorrect
+      summary: Create a user
+components:
+  schemas:
+    errorMessage:
+      description: A text message describing an error
+      maxLength: 256
+      type: string
+    user:
+      properties:
+        username:
+          description: Username, must be unique to the queensaver system. We encourage
+            using email-addresses here.
+          example: jon@doe.com
+          maxLength: 256
+          type: string
+        password:
+          description: Password
+          format: password
+          type: string
+        firstName:
+          description: First name of the user
+          example: Hans
+          maxLength: 256
+          type: string
+        lastName:
+          description: Last name of the user
+          example: Ecker
+          maxLength: 256
+          type: string
+      type: object
