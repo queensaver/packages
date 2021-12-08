@@ -10,7 +10,7 @@
 
 syntax = "proto3";
 
-package auth;
+package openapi;
 
 
 message User {

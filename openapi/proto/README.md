@@ -1,4 +1,4 @@
-# gPRC for auth
+# gPRC for openapi
 
 Queensaver API to send in sensor data and retrieve it. It's also used for user management.
 
@@ -24,7 +24,7 @@ protoc --go_out=/var/tmp/go/ models/*
 ### Ruby
 ```
 # assuming `grpc_tools_ruby_protoc` has been installed via `gem install grpc-tools`
-RUBY_OUTPUT_DIR="/var/tmp/ruby/auth"
+RUBY_OUTPUT_DIR="/var/tmp/ruby/openapi"
 mkdir $RUBY_OUTPUT_DIR
 grpc_tools_ruby_protoc --ruby_out=$RUBY_OUTPUT_DIR --grpc_out=$RUBY_OUTPUT_DIR/lib services/*
 grpc_tools_ruby_protoc --ruby_out=$RUBY_OUTPUT_DIR --grpc_out=$RUBY_OUTPUT_DIR/lib models/*
