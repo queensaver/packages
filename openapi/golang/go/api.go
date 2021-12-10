@@ -32,6 +32,6 @@ type DefaultApiRouter interface {
 // and updated with the logic required for the API.
 type DefaultApiServicer interface { 
 	AuthPost(context.Context, User) (ImplResponse, error)
-	ScaleGet(context.Context, string, int64, int64) (ImplResponse, error)
+	ScaleGet(context.Context, string, string, string, int64, int64) (ImplResponse, error)
 	UserPost(context.Context, User) (ImplResponse, error)
 }

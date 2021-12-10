@@ -62,6 +62,18 @@ paths:
       description: This returns scale values for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called "token". Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
       # operationId: getScaleValues
       parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
       - name: bhive_id
         in: query
         description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.

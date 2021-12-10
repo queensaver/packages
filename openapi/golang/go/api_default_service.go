@@ -41,7 +41,7 @@ func (s *DefaultApiService) AuthPost(ctx context.Context, user User) (ImplRespon
 }
 
 // ScaleGet - Get Scale values
-func (s *DefaultApiService) ScaleGet(ctx context.Context, bhiveId string, epoch int64, secondsInThePast int64) (ImplResponse, error) {
+func (s *DefaultApiService) ScaleGet(ctx context.Context, qToken string, token string, bhiveId string, epoch int64, secondsInThePast int64) (ImplResponse, error) {
 	// TODO - update ScaleGet with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

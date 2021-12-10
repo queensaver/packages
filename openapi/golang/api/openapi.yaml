@@ -60,6 +60,26 @@ paths:
         QBox Client (independent of the beeHive), the API call for an actual beeHive
         is different.
       parameters:
+      - description: Either the cookie or this Q-Token must be set to be authorized
+          for the API call.
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        explode: false
+        in: header
+        name: Q-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: Either this cookie or the Q-Token must be set to be authorized
+          for the API call.
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        explode: true
+        in: cookie
+        name: token
+        required: false
+        schema:
+          type: string
+        style: form
       - description: The Mac Address of the QBox client. You can get all QBox IDs
           and clients with the /config API call.
         example: 829898a53801
