@@ -35,7 +35,8 @@ paths:
       summary: Create a user
   /login:
     post:
-      description: This call is meant for interactive web applications
+      description: This call is meant for interactive web applications. Be aware that
+        the server returns a cookie with a 24 hour lifetime.
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -94,7 +95,7 @@ paths:
         explode: true
         in: query
         name: bhive_id
-        required: false
+        required: true
         schema:
           type: string
         style: form
@@ -104,7 +105,7 @@ paths:
         explode: true
         in: query
         name: epoch
-        required: false
+        required: true
         schema:
           format: int64
           type: integer
@@ -113,7 +114,7 @@ paths:
         explode: true
         in: query
         name: seconds_in_the_past
-        required: false
+        required: true
         schema:
           format: int64
           type: integer

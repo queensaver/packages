@@ -95,17 +95,17 @@ func (c *DefaultApiController) ScaleGet(w http.ResponseWriter, r *http.Request) 
 	query := r.URL.Query()
 	qTokenParam := r.Header.Get("Q-Token")
 	bhiveIdParam := query.Get("bhive_id")
-	epochParam, err := parseInt64Parameter(query.Get("epoch"), false)
+	epochParam, err := parseInt64Parameter(query.Get("epoch"), true)
 	if err != nil {
 		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
 		return
 	}
-	secondsInThePastParam, err := parseInt64Parameter(query.Get("seconds_in_the_past"), false)
+	secondsInThePastParam, err := parseInt64Parameter(query.Get("seconds_in_the_past"), true)
 	if err != nil {
 		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
 		return
 	}
-	result, err := c.service.ScaleGet(r.Context(), qTokenParam, tokenParam, bhiveIdParam, epochParam, secondsInThePastParam)
+	result, err := c.service.ScaleGet(r.Context(), qTokenParam, bhiveIdParam, epochParam, secondsInThePastParam, tokenParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)

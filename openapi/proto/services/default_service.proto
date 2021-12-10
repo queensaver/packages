@@ -36,14 +36,14 @@ message LoginPostRequest {
 message ScaleGetRequest {
   // Either the cookie or this Q-Token must be set to be authorized for the API call.
   string qToken = 1;
-  // Either this cookie or the Q-Token must be set to be authorized for the API call.
-  string token = 2;
   // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
-  string bhiveId = 3;
+  string bhiveId = 2;
   // The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
-  int64 epoch = 4;
+  int64 epoch = 3;
   // How many seconds we go to the past to get the data measurements.
-  int64 secondsInThePast = 5;
+  int64 secondsInThePast = 4;
+  // Either this cookie or the Q-Token must be set to be authorized for the API call.
+  string token = 5;
 
 }
 

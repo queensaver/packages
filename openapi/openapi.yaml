@@ -51,7 +51,7 @@ paths:
         "200":
           description: "Returns a cookie to the browser with the key called 'token'"
           headers:
-            Set-Cookie:
+            "Set-Cookie":
               schema:
                 type: string
                 example: token=abcde12345; Path=/; HttpOnly
