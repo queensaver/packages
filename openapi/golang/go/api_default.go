@@ -51,10 +51,10 @@ func NewDefaultApiController(s DefaultApiServicer, opts ...DefaultApiOption) Rou
 func (c *DefaultApiController) Routes() Routes {
 	return Routes{ 
 		{
-			"AuthPost",
+			"LoginPost",
 			strings.ToUpper("Post"),
-			"/v1/auth",
-			c.AuthPost,
+			"/v1/login",
+			c.LoginPost,
 		},
 		{
 			"ScaleGet",
@@ -71,20 +71,15 @@ func (c *DefaultApiController) Routes() Routes {
 	}
 }
 
-// AuthPost - Create a user
-func (c *DefaultApiController) AuthPost(w http.ResponseWriter, r *http.Request) {
-	userParam := User{}
-	d := json.NewDecoder(r.Body)
-	d.DisallowUnknownFields()
-	if err := d.Decode(&userParam); err != nil {
+// LoginPost - Authenticate a user against the system.
+func (c *DefaultApiController) LoginPost(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
 		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
 		return
 	}
-	if err := AssertUserRequired(userParam); err != nil {
-		c.errorHandler(w, r, err, nil)
-		return
-	}
-	result, err := c.service.AuthPost(r.Context(), userParam)
+				usernameParam := r.FormValue("username")
+				passwordParam := r.FormValue("password")
+	result, err := c.service.LoginPost(r.Context(), usernameParam, passwordParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)

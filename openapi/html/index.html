@@ -915,8 +915,8 @@ ul.nav-tabs {
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                    <li data-group="Default" data-name="authPost" class="">
-                      <a href="#api-Default-authPost">authPost</a>
+                    <li data-group="Default" data-name="loginPost" class="">
+                      <a href="#api-Default-loginPost">loginPost</a>
                     </li>
                     <li data-group="Default" data-name="scaleGet" class="">
                       <a href="#api-Default-scaleGet">scaleGet</a>
@@ -947,47 +947,46 @@ ul.nav-tabs {
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
-                    <div id="api-Default-authPost">
-                      <article id="api-Default-authPost-0" data-group="User" data-name="authPost" data-version="0">
+                    <div id="api-Default-loginPost">
+                      <article id="api-Default-loginPost-0" data-group="User" data-name="loginPost" data-version="0">
                         <div class="pull-left">
-                          <h1>authPost</h1>
-                          <p>Create a user</p>
+                          <h1>loginPost</h1>
+                          <p>Authenticate a user against the system.</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">This call creates a user in the queensaver system.</p>
+                        <p class="marked">This call is meant for interactive web applications</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/auth</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/login</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-authPost-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-authPost-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-authPost-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-authPost-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-authPost-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-authPost-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-authPost-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-authPost-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-authPost-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-authPost-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-authPost-0-python">Python</a></li>
-                          <li class=""><a href="#examples-Default-authPost-0-rust">Rust</a></li>
+                          <li class="active"><a href="#examples-Default-loginPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-loginPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-loginPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-loginPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-loginPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-loginPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-loginPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-loginPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-loginPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-loginPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-loginPost-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-loginPost-0-rust">Rust</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-authPost-0-curl">
+                          <div class="tab-pane active" id="examples-Default-loginPost-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST \
  -H "Accept: application/json" \
- -H "Content-Type: application/json" \
- "https://api.queensaver.com/v1/auth" \
- -d ''
+ -H "Content-Type: application/x-www-form-urlencoded" \
+ "https://api.queensaver.com/v1/login"
 </code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-authPost-0-java">
+                          <div class="tab-pane" id="examples-Default-loginPost-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.model.*;
@@ -1001,12 +1000,13 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
-        User user = ; // User | 
+        String username = username_example; // String | Username, must be unique to the queensaver system. We encourage using email-addresses here.
+        String password = password_example; // String | Password
 
         try {
-            apiInstance.authPost(user);
+            apiInstance.loginPost(username, password);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#authPost");
+            System.err.println("Exception when calling DefaultApi#loginPost");
             e.printStackTrace();
         }
     }
@@ -1014,36 +1014,39 @@ public class DefaultApiExample {
 </code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-authPost-0-android">
+                          <div class="tab-pane" id="examples-Default-loginPost-0-android">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
-        User user = ; // User | 
+        String username = username_example; // String | Username, must be unique to the queensaver system. We encourage using email-addresses here.
+        String password = password_example; // String | Password
 
         try {
-            apiInstance.authPost(user);
+            apiInstance.loginPost(username, password);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#authPost");
+            System.err.println("Exception when calling DefaultApi#loginPost");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-authPost-0-groovy">
+  <div class="tab-pane" id="examples-Default-loginPost-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-authPost-0-objc">
+                            <div class="tab-pane" id="examples-Default-loginPost-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
-User *user = ; // 
+String *username = username_example; // Username, must be unique to the queensaver system. We encourage using email-addresses here. (optional) (default to null)
+String *password = password_example; // Password (optional) (default to null)
 
-// Create a user
-[apiInstance authPostWith:user
+// Authenticate a user against the system.
+[apiInstance loginPostWith:username
+    password:password
               completionHandler: ^(NSError* error) {
     if (error) {
         NSLog(@"Error: %@", error);
@@ -1052,12 +1055,15 @@ User *user = ; //
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-authPost-0-javascript">
+                            <div class="tab-pane" id="examples-Default-loginPost-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
 
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
-var user = ; // {User} 
+var opts = {
+  'username': username_example, // {String} Username, must be unique to the queensaver system. We encourage using email-addresses here.
+  'password': password_example // {String} Password
+};
 
 var callback = function(error, data, response) {
   if (error) {
@@ -1066,14 +1072,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.authPost(user, callback);
+api.loginPost(opts, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-authPost-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-loginPost-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-authPost-0-csharp">
+                            <div class="tab-pane" id="examples-Default-loginPost-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
@@ -1082,20 +1088,21 @@ using Org.OpenAPITools.Model;
 
 namespace Example
 {
-    public class authPostExample
+    public class loginPostExample
     {
         public void main()
         {
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
-            var user = new User(); // User | 
+            var username = username_example;  // String | Username, must be unique to the queensaver system. We encourage using email-addresses here. (optional)  (default to null)
+            var password = password_example;  // String | Password (optional)  (default to null)
 
             try {
-                // Create a user
-                apiInstance.authPost(user);
+                // Authenticate a user against the system.
+                apiInstance.loginPost(username, password);
             } catch (Exception e) {
-                Debug.Print("Exception when calling DefaultApi.authPost: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.loginPost: " + e.Message );
             }
         }
     }
@@ -1103,40 +1110,42 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-authPost-0-php">
+                            <div class="tab-pane" id="examples-Default-loginPost-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
-$user = ; // User | 
+$username = username_example; // String | Username, must be unique to the queensaver system. We encourage using email-addresses here.
+$password = password_example; // String | Password
 
 try {
-    $api_instance->authPost($user);
+    $api_instance->loginPost($username, $password);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->authPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->loginPost: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-authPost-0-perl">
+                            <div class="tab-pane" id="examples-Default-loginPost-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::OPenAPIClient::Configuration;
 use WWW::OPenAPIClient::DefaultApi;
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
-my $user = WWW::OPenAPIClient::Object::User->new(); # User | 
+my $username = username_example; # String | Username, must be unique to the queensaver system. We encourage using email-addresses here.
+my $password = password_example; # String | Password
 
 eval {
-    $api_instance->authPost(user => $user);
+    $api_instance->loginPost(username => $username, password => $password);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->authPost: $@\n";
+    warn "Exception when calling DefaultApi->loginPost: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-authPost-0-python">
+                            <div class="tab-pane" id="examples-Default-loginPost-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import openapi_client
@@ -1145,23 +1154,25 @@ from pprint import pprint
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
-user =  # User | 
+username = username_example # String | Username, must be unique to the queensaver system. We encourage using email-addresses here. (optional) (default to null)
+password = password_example # String | Password (optional) (default to null)
 
 try:
-    # Create a user
-    api_instance.auth_post(user)
+    # Authenticate a user against the system.
+    api_instance.login_post(username=username, password=password)
 except ApiException as e:
-    print("Exception when calling DefaultApi->authPost: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->loginPost: %s\n" % e)</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-authPost-0-rust">
+                            <div class="tab-pane" id="examples-Default-loginPost-0-rust">
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
-    let user = ; // User
+    let username = username_example; // String
+    let password = password_example; // String
 
     let mut context = DefaultApi::Context::default();
-    let result = client.authPost(user, &context).wait();
+    let result = client.loginPost(username, password, &context).wait();
 
     println!("{:?}", result);
 }
@@ -1178,95 +1189,118 @@ pub fn main() {
 
 
 
-                            <div class="methodsubtabletitle">Body parameters</div>
+
+                            <div class="methodsubtabletitle">Form parameters</div>
                             <table id="methodsubtable">
                               <tr>
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">user <span style="color:red;">*</span></td>
+                                  <tr><td style="width:150px;">username</td>
 <td>
-<p class="marked"></p>
-<script>
-$(document).ready(function() {
-  var schemaWrapper = {
-  "content" : {
-    "application/json" : {
-      "schema" : {
-        "$ref" : "#/components/schemas/user"
-      }
-    }
-  },
-  "required" : true
-};
 
-  var schema = findNode('schema',schemaWrapper).schema;
-  if (!schema) {
-    schema = schemaWrapper.schema;
-  }
-  if (schema.$ref != null) {
-    schema = defsParser.$refs.get(schema.$ref);
-  } else {
-    schemaWrapper.definitions = Object.assign({}, defs);
-    $RefParser.dereference(schemaWrapper).catch(function(err) {
-      console.log(err);
-    });
-  }
 
-  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_authPost_user');
-  result.empty();
-  result.append(view.render());
-});
-</script>
-<div id="d2e199_authPost_user"></div>
+    <div id="d2e199_loginPost_username">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+Username, must be unique to the queensaver system. We encourage using email-addresses here.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                  <tr><td style="width:150px;">password</td>
+<td>
+
+
+    <div id="d2e199_loginPost_password">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+                    <span class="format">
+                        (password)
+                    </span>
+
+                    <div class="inner description marked">
+Password
+                    </div>
+            </div>
+        </div>
+    </div>
 </td>
 </tr>
 
                             </table>
 
 
-
                           <h2>Responses</h2>
-                            <h3 id="examples-Default-authPost-title-200"></h3>
-                            <p id="examples-Default-authPost-description-200" class="marked"></p>
+                            <h3 id="examples-Default-loginPost-title-200"></h3>
+                            <p id="examples-Default-loginPost-description-200" class="marked"></p>
                             <script>
-                              var responseDefault200_description = `OK`;
+                              var responseDefault200_description = `Returns a cookie to the browser with the key called 'token'`;
                               var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
                               if (responseDefault200_description_break == -1) {
-                                $("#examples-Default-authPost-title-200").text("Status: 200 - " + responseDefault200_description);
+                                $("#examples-Default-loginPost-title-200").text("Status: 200 - " + responseDefault200_description);
                               } else {
-                                $("#examples-Default-authPost-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
-                                $("#examples-Default-authPost-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                                $("#examples-Default-loginPost-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-loginPost-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-authPost-200" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-loginPost-200" class="nav nav-tabs nav-tabs-examples" >
 
+                                <li class="">
+                                  <a data-toggle="tab" href="#responses-loginPost-200-headers">Headers</a>
+                                </li>
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-authPost-200-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-Default-loginPost-200-wrapper" style='margin-bottom: 10px;'>
+                                  <div class="tab-pane" id="responses-loginPost-200-headers">
+                                      <table>
+                                          <tr>
+                                              <th width="150px">Name</th>
+                                              <th width="100px">Type</th>
+                                              <th width="100px">Format</th>
+                                              <th>Description</th>
+                                          </tr>
+                                              <tr>
+                                                  <td>SetMinusCookie</td>
+                                                  <td>String</td>
+                                                  <td></td>
+                                                  <td></td>
+                                              </tr>
+                                      </table>
+                                  </div>
                             </div>
-                            <h3 id="examples-Default-authPost-title-400"></h3>
-                            <p id="examples-Default-authPost-description-400" class="marked"></p>
+                            <h3 id="examples-Default-loginPost-title-400"></h3>
+                            <p id="examples-Default-loginPost-description-400" class="marked"></p>
                             <script>
                               var responseDefault400_description = `The provided parameters are incorrect`;
                               var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
                               if (responseDefault400_description_break == -1) {
-                                $("#examples-Default-authPost-title-400").text("Status: 400 - " + responseDefault400_description);
+                                $("#examples-Default-loginPost-title-400").text("Status: 400 - " + responseDefault400_description);
                               } else {
-                                $("#examples-Default-authPost-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
-                                $("#examples-Default-authPost-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                                $("#examples-Default-loginPost-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-loginPost-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-authPost-400" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-loginPost-400" class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-Default-authPost-400-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-Default-loginPost-400-schema">Schema</a>
                                 </li>
 
 
@@ -1275,9 +1309,9 @@ $(document).ready(function() {
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-authPost-400-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-Default-authPost-400-schema">
-                                  <div id="responses-Default-authPost-schema-400" class="exampleStyle">
+                            <div class="tab-content" id="responses-Default-loginPost-400-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-loginPost-400-schema">
+                                  <div id="responses-Default-loginPost-schema-400" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1286,11 +1320,6 @@ $(document).ready(function() {
     "application/json" : {
       "schema" : {
         "$ref" : "#/components/schemas/errorMessage"
-      },
-      "examples" : {
-        "missingData" : {
-          "value" : "Data is missing."
-        }
       }
     }
   }
@@ -1311,14 +1340,14 @@ $(document).ready(function() {
                                         }
 
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-Default-authPost-400-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-Default-authPost-schema-400');
+                                        $('#responses-Default-loginPost-400-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-loginPost-schema-400');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-Default-authPost-400-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-Default-loginPost-400-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
                         </article>
@@ -1358,6 +1387,7 @@ $(document).ready(function() {
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Default-scaleGet-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
+ \
  -H "Accept: application/json" \
  "https://api.queensaver.com/v1/scale?bhive_id=829898a53801&epoch=1639170002&seconds_in_the_past=789"
 </code></pre>
@@ -1373,6 +1403,13 @@ import java.util.*;
 
 public class DefaultApiExample {
     public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
@@ -1421,11 +1458,17 @@ public class DefaultApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Default-scaleGet-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
-String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
+String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 String *bhiveId = 829898a53801; // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional) (default to null)
 Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter. (optional) (default to null)
@@ -1450,11 +1493,18 @@ Long *secondsInThePast = 789; // How many seconds we go to the past to get the d
 
                             <div class="tab-pane" id="examples-Default-scaleGet-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
 
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
+var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // {String} Either the cookie or this Q-Token must be set to be authorized for the API call.
 var opts = {
-  'qToken': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either the cookie or this Q-Token must be set to be authorized for the API call.
   'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449, // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
   'bhiveId': 829898a53801, // {String} The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
   'epoch': 1639170002, // {Long} The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
@@ -1468,7 +1518,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.scaleGet(opts, callback);
+api.scaleGet(qToken, opts, callback);
 </code></pre>
                             </div>
 
@@ -1488,10 +1538,14 @@ namespace Example
     {
         public void main()
         {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
-            var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie or this Q-Token must be set to be authorized for the API call. (optional)  (default to null)
+            var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
             var bhiveId = 829898a53801;  // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional)  (default to null)
             var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter. (optional)  (default to null)
@@ -1514,6 +1568,11 @@ namespace Example
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
@@ -1535,6 +1594,11 @@ try {
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::OPenAPIClient::Configuration;
 use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
@@ -1560,9 +1624,14 @@ import openapi_client
 from openapi_client.rest import ApiException
 from pprint import pprint
 
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
-qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or this Q-Token must be set to be authorized for the API call. (optional) (default to null)
+qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 bhiveId = 829898a53801 # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (optional) (default to null)
 epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter. (optional) (default to null)
@@ -1570,7 +1639,7 @@ secondsInThePast = 789 # Long | How many seconds we go to the past to get the da
 
 try:
     # Get Scale values
-    api_response = api_instance.scale_get(qToken=qToken, token=token, bhiveId=bhiveId, epoch=epoch, secondsInThePast=secondsInThePast)
+    api_response = api_instance.scale_get(qToken, token=token, bhiveId=bhiveId, epoch=epoch, secondsInThePast=secondsInThePast)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->scaleGet: %s\n" % e)</code></pre>
@@ -1609,7 +1678,7 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                  <tr><td style="width:150px;">Q-Token</td>
+                                  <tr><td style="width:150px;">Q-Token*</td>
 <td>
 
 
@@ -1624,6 +1693,9 @@ pub fn main() {
 Either the cookie or this Q-Token must be set to be authorized for the API call.
                     </div>
             </div>
+                <div class="inner required">
+                    Required
+                </div>
         </div>
     </div>
 </td>

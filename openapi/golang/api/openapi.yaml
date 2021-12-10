@@ -7,6 +7,8 @@ info:
 servers:
 - description: Queensaver API Server
   url: https://api.queensaver.com/v1
+security:
+- cookieAuth: []
 paths:
   /user:
     post:
@@ -29,29 +31,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorMessage'
           description: The provided parameters are incorrect
+      security: []
       summary: Create a user
-  /auth:
+  /login:
     post:
-      description: This call creates a user in the queensaver system.
+      description: This call is meant for interactive web applications
       requestBody:
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/user'
+              $ref: '#/components/schemas/login'
         required: true
       responses:
         "200":
-          description: OK
+          description: Returns a cookie to the browser with the key called 'token'
+          headers:
+            Set-Cookie:
+              explode: false
+              schema:
+                example: token=abcde12345; Path=/; HttpOnly
+                type: string
+              style: simple
         "400":
           content:
             application/json:
-              examples:
-                missingData:
-                  value: Data is missing.
               schema:
                 $ref: '#/components/schemas/errorMessage'
           description: The provided parameters are incorrect
-      summary: Create a user
+      security: []
+      summary: Authenticate a user against the system.
   /scale:
     get:
       description: This returns scale values for a certain, defineable date range.
@@ -66,7 +74,7 @@ paths:
         explode: false
         in: header
         name: Q-Token
-        required: false
+        required: true
         schema:
           type: string
         style: simple
@@ -121,6 +129,8 @@ paths:
           description: Generic error
         "500":
           description: Internal error
+      security:
+      - cookieAuth: []
       summary: Get Scale values
 components:
   schemas:
@@ -154,6 +164,20 @@ components:
           format: int64
           type: integer
       type: object
+    login:
+      properties:
+        username:
+          description: Username, must be unique to the queensaver system. We encourage
+            using email-addresses here.
+          example: jon@doe.com
+          maxLength: 256
+          type: string
+        password:
+          description: Password
+          example: trustno1
+          format: password
+          type: string
+      type: object
     user:
       properties:
         username:
@@ -177,3 +201,8 @@ components:
           maxLength: 256
           type: string
       type: object
+  securitySchemes:
+    cookieAuth:
+      in: cookie
+      name: token
+      type: apiKey

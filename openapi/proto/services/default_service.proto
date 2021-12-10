@@ -17,7 +17,7 @@ import public "models/user.proto";
 import public "models/weight.proto";
 
 service DefaultService {
-  rpc AuthPost (AuthPostRequest) returns (google.protobuf.Empty);
+  rpc LoginPost (LoginPostRequest) returns (google.protobuf.Empty);
 
   rpc ScaleGet (ScaleGetRequest) returns (ScaleGetResponse);
 
@@ -25,8 +25,11 @@ service DefaultService {
 
 }
 
-message AuthPostRequest {
-  User user = 1;
+message LoginPostRequest {
+  // Username, must be unique to the queensaver system. We encourage using email-addresses here.
+  string username = 1;
+  // Password
+  string password = 2;
 
 }
 
