@@ -9,7 +9,7 @@ servers:
   description: Queensaver API Server
 
 paths: 
-  /users:
+  /user:
     post:
       summary: Create a user 
       description: This call creates a user in the queensaver system.

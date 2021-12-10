@@ -26,9 +26,9 @@ func NewDefaultApiService() DefaultApiServicer {
 	return &DefaultApiService{}
 }
 
-// UsersPost - Create a user
-func (s *DefaultApiService) UsersPost(ctx context.Context, user User) (ImplResponse, error) {
-	// TODO - update UsersPost with the required logic for this service method.
+// UserPost - Create a user
+func (s *DefaultApiService) UserPost(ctx context.Context, user User) (ImplResponse, error) {
+	// TODO - update UserPost with the required logic for this service method.
 	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 
 	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
@@ -37,5 +37,5 @@ func (s *DefaultApiService) UsersPost(ctx context.Context, user User) (ImplRespo
 	//TODO: Uncomment the next line to return response Response(400, string{}) or use other options such as http.Ok ...
 	//return Response(400, string{}), nil
 
-	return Response(http.StatusNotImplemented, nil), errors.New("UsersPost method not implemented")
+	return Response(http.StatusNotImplemented, nil), errors.New("UserPost method not implemented")
 }

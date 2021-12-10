@@ -8,7 +8,7 @@ servers:
 - description: Queensaver API Server
   url: https://api.queensaver.com/v1
 paths:
-  /users:
+  /user:
     post:
       description: This call creates a user in the queensaver system.
       requestBody:

@@ -51,16 +51,16 @@ func NewDefaultApiController(s DefaultApiServicer, opts ...DefaultApiOption) Rou
 func (c *DefaultApiController) Routes() Routes {
 	return Routes{ 
 		{
-			"UsersPost",
+			"UserPost",
 			strings.ToUpper("Post"),
-			"/v1/users",
-			c.UsersPost,
+			"/v1/user",
+			c.UserPost,
 		},
 	}
 }
 
-// UsersPost - Create a user
-func (c *DefaultApiController) UsersPost(w http.ResponseWriter, r *http.Request) {
+// UserPost - Create a user
+func (c *DefaultApiController) UserPost(w http.ResponseWriter, r *http.Request) {
 	userParam := User{}
 	d := json.NewDecoder(r.Body)
 	d.DisallowUnknownFields()
@@ -72,7 +72,7 @@ func (c *DefaultApiController) UsersPost(w http.ResponseWriter, r *http.Request)
 		c.errorHandler(w, r, err, nil)
 		return
 	}
-	result, err := c.service.UsersPost(r.Context(), userParam)
+	result, err := c.service.UserPost(r.Context(), userParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)

@@ -16,11 +16,11 @@ import "google/protobuf/empty.proto";
 import public "models/user.proto";
 
 service DefaultService {
-  rpc UsersPost (UsersPostRequest) returns (google.protobuf.Empty);
+  rpc UserPost (UserPostRequest) returns (google.protobuf.Empty);
 
 }
 
-message UsersPostRequest {
+message UserPostRequest {
   User user = 1;
 
 }

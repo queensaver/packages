@@ -893,8 +893,8 @@ ul.nav-tabs {
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
-                    <li data-group="Default" data-name="usersPost" class="">
-                      <a href="#api-Default-usersPost">usersPost</a>
+                    <li data-group="Default" data-name="userPost" class="">
+                      <a href="#api-Default-userPost">userPost</a>
                     </li>
           </ul>
         </nav>
@@ -919,10 +919,10 @@ ul.nav-tabs {
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
-                    <div id="api-Default-usersPost">
-                      <article id="api-Default-usersPost-0" data-group="User" data-name="usersPost" data-version="0">
+                    <div id="api-Default-userPost">
+                      <article id="api-Default-userPost-0" data-group="User" data-name="userPost" data-version="0">
                         <div class="pull-left">
-                          <h1>usersPost</h1>
+                          <h1>userPost</h1>
                           <p>Create a user</p>
                         </div>
                         <div class="pull-right"></div>
@@ -931,35 +931,35 @@ ul.nav-tabs {
                         <p class="marked">This call creates a user in the queensaver system.</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/users</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/user</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Default-usersPost-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Default-usersPost-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Default-usersPost-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Default-usersPost-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Default-usersPost-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Default-usersPost-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Default-usersPost-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Default-usersPost-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Default-usersPost-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Default-usersPost-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Default-usersPost-0-python">Python</a></li>
-                          <li class=""><a href="#examples-Default-usersPost-0-rust">Rust</a></li>
+                          <li class="active"><a href="#examples-Default-userPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-userPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-userPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-userPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-userPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-userPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-userPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-userPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-userPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-userPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-userPost-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-userPost-0-rust">Rust</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Default-usersPost-0-curl">
+                          <div class="tab-pane active" id="examples-Default-userPost-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X POST \
  -H "Accept: application/json" \
  -H "Content-Type: application/json" \
- "https://api.queensaver.com/v1/users" \
+ "https://api.queensaver.com/v1/user" \
  -d ''
 </code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Default-usersPost-0-java">
+                          <div class="tab-pane" id="examples-Default-userPost-0-java">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
 import org.openapitools.client.auth.*;
 import org.openapitools.client.model.*;
@@ -976,9 +976,9 @@ public class DefaultApiExample {
         User user = ; // User | 
 
         try {
-            apiInstance.usersPost(user);
+            apiInstance.userPost(user);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#usersPost");
+            System.err.println("Exception when calling DefaultApi#userPost");
             e.printStackTrace();
         }
     }
@@ -986,7 +986,7 @@ public class DefaultApiExample {
 </code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Default-usersPost-0-android">
+                          <div class="tab-pane" id="examples-Default-userPost-0-android">
                             <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
 
 public class DefaultApiExample {
@@ -995,19 +995,19 @@ public class DefaultApiExample {
         User user = ; // User | 
 
         try {
-            apiInstance.usersPost(user);
+            apiInstance.userPost(user);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#usersPost");
+            System.err.println("Exception when calling DefaultApi#userPost");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Default-usersPost-0-groovy">
+  <div class="tab-pane" id="examples-Default-userPost-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Default-usersPost-0-objc">
+                            <div class="tab-pane" id="examples-Default-userPost-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">
 
 // Create an instance of the API class
@@ -1015,7 +1015,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 User *user = ; // 
 
 // Create a user
-[apiInstance usersPostWith:user
+[apiInstance userPostWith:user
               completionHandler: ^(NSError* error) {
     if (error) {
         NSLog(@"Error: %@", error);
@@ -1024,7 +1024,7 @@ User *user = ; //
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-usersPost-0-javascript">
+                            <div class="tab-pane" id="examples-Default-userPost-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
 
 // Create an instance of the API class
@@ -1038,14 +1038,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.usersPost(user, callback);
+api.userPost(user, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Default-usersPost-0-angular">
+                            <!--<div class="tab-pane" id="examples-Default-userPost-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Default-usersPost-0-csharp">
+                            <div class="tab-pane" id="examples-Default-userPost-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
@@ -1054,7 +1054,7 @@ using Org.OpenAPITools.Model;
 
 namespace Example
 {
-    public class usersPostExample
+    public class userPostExample
     {
         public void main()
         {
@@ -1065,9 +1065,9 @@ namespace Example
 
             try {
                 // Create a user
-                apiInstance.usersPost(user);
+                apiInstance.userPost(user);
             } catch (Exception e) {
-                Debug.Print("Exception when calling DefaultApi.usersPost: " + e.Message );
+                Debug.Print("Exception when calling DefaultApi.userPost: " + e.Message );
             }
         }
     }
@@ -1075,7 +1075,7 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-usersPost-0-php">
+                            <div class="tab-pane" id="examples-Default-userPost-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
@@ -1084,14 +1084,14 @@ $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $user = ; // User | 
 
 try {
-    $api_instance->usersPost($user);
+    $api_instance->userPost($user);
 } catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->usersPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DefaultApi->userPost: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-usersPost-0-perl">
+                            <div class="tab-pane" id="examples-Default-userPost-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::OPenAPIClient::Configuration;
 use WWW::OPenAPIClient::DefaultApi;
@@ -1101,14 +1101,14 @@ my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $user = WWW::OPenAPIClient::Object::User->new(); # User | 
 
 eval {
-    $api_instance->usersPost(user => $user);
+    $api_instance->userPost(user => $user);
 };
 if ($@) {
-    warn "Exception when calling DefaultApi->usersPost: $@\n";
+    warn "Exception when calling DefaultApi->userPost: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-usersPost-0-python">
+                            <div class="tab-pane" id="examples-Default-userPost-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import openapi_client
@@ -1121,19 +1121,19 @@ user =  # User |
 
 try:
     # Create a user
-    api_instance.users_post(user)
+    api_instance.user_post(user)
 except ApiException as e:
-    print("Exception when calling DefaultApi->usersPost: %s\n" % e)</code></pre>
+    print("Exception when calling DefaultApi->userPost: %s\n" % e)</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Default-usersPost-0-rust">
+                            <div class="tab-pane" id="examples-Default-userPost-0-rust">
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
     let user = ; // User
 
     let mut context = DefaultApi::Context::default();
-    let result = client.usersPost(user, &context).wait();
+    let result = client.userPost(user, &context).wait();
 
     println!("{:?}", result);
 }
@@ -1186,12 +1186,12 @@ $(document).ready(function() {
   }
 
   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_usersPost_user');
+  var result = $('#d2e199_userPost_user');
   result.empty();
   result.append(view.render());
 });
 </script>
-<div id="d2e199_usersPost_user"></div>
+<div id="d2e199_userPost_user"></div>
 </td>
 </tr>
 
@@ -1200,45 +1200,45 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
-                            <h3 id="examples-Default-usersPost-title-200"></h3>
-                            <p id="examples-Default-usersPost-description-200" class="marked"></p>
+                            <h3 id="examples-Default-userPost-title-200"></h3>
+                            <p id="examples-Default-userPost-description-200" class="marked"></p>
                             <script>
                               var responseDefault200_description = `OK`;
                               var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
                               if (responseDefault200_description_break == -1) {
-                                $("#examples-Default-usersPost-title-200").text("Status: 200 - " + responseDefault200_description);
+                                $("#examples-Default-userPost-title-200").text("Status: 200 - " + responseDefault200_description);
                               } else {
-                                $("#examples-Default-usersPost-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
-                                $("#examples-Default-usersPost-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                                $("#examples-Default-userPost-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-userPost-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-usersPost-200" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-userPost-200" class="nav nav-tabs nav-tabs-examples" >
 
 
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-usersPost-200-wrapper" style='margin-bottom: 10px;'>
+                            <div class="tab-content" id="responses-Default-userPost-200-wrapper" style='margin-bottom: 10px;'>
                             </div>
-                            <h3 id="examples-Default-usersPost-title-400"></h3>
-                            <p id="examples-Default-usersPost-description-400" class="marked"></p>
+                            <h3 id="examples-Default-userPost-title-400"></h3>
+                            <p id="examples-Default-userPost-description-400" class="marked"></p>
                             <script>
                               var responseDefault400_description = `The provided parameters are incorrect`;
                               var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
                               if (responseDefault400_description_break == -1) {
-                                $("#examples-Default-usersPost-title-400").text("Status: 400 - " + responseDefault400_description);
+                                $("#examples-Default-userPost-title-400").text("Status: 400 - " + responseDefault400_description);
                               } else {
-                                $("#examples-Default-usersPost-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
-                                $("#examples-Default-usersPost-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                                $("#examples-Default-userPost-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-userPost-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
                               }
                             </script>
 
 
-                            <ul id="responses-detail-Default-usersPost-400" class="nav nav-tabs nav-tabs-examples" >
+                            <ul id="responses-detail-Default-userPost-400" class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-Default-usersPost-400-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-Default-userPost-400-schema">Schema</a>
                                 </li>
 
 
@@ -1247,9 +1247,9 @@ $(document).ready(function() {
                             </ul>
 
 
-                            <div class="tab-content" id="responses-Default-usersPost-400-wrapper" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-Default-usersPost-400-schema">
-                                  <div id="responses-Default-usersPost-schema-400" class="exampleStyle">
+                            <div class="tab-content" id="responses-Default-userPost-400-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-userPost-400-schema">
+                                  <div id="responses-Default-userPost-schema-400" class="exampleStyle">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
@@ -1283,14 +1283,14 @@ $(document).ready(function() {
                                         }
 
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-Default-usersPost-400-schema-data').val(JSON.stringify(schema));
-                                        var result = $('#responses-Default-usersPost-schema-400');
+                                        $('#responses-Default-userPost-400-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-userPost-schema-400');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-Default-usersPost-400-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-Default-userPost-400-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
                         </article>
