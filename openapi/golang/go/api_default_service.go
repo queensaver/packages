@@ -26,6 +26,23 @@ func NewDefaultApiService() DefaultApiServicer {
 	return &DefaultApiService{}
 }
 
+// ScaleGet - Get Scale values
+func (s *DefaultApiService) ScaleGet(ctx context.Context, bhiveId string, epoch int64, secondsInThePast int64) (ImplResponse, error) {
+	// TODO - update ScaleGet with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, []Weight{}) or use other options such as http.Ok ...
+	//return Response(200, []Weight{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("ScaleGet method not implemented")
+}
+
 // UserPost - Create a user
 func (s *DefaultApiService) UserPost(ctx context.Context, user User) (ImplResponse, error) {
 	// TODO - update UserPost with the required logic for this service method.

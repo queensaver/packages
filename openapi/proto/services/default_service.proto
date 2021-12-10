@@ -14,10 +14,27 @@ package openapi;
 
 import "google/protobuf/empty.proto";
 import public "models/user.proto";
+import public "models/weight.proto";
 
 service DefaultService {
+  rpc ScaleGet (ScaleGetRequest) returns (ScaleGetResponse);
+
   rpc UserPost (UserPostRequest) returns (google.protobuf.Empty);
 
+}
+
+message ScaleGetRequest {
+  // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+  string bhiveId = 1;
+  // The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
+  int64 epoch = 2;
+  // How many seconds we go to the past to get the data measurements.
+  int64 secondsInThePast = 3;
+
+}
+
+message ScaleGetResponse {
+  repeated Weight data = 1;
 }
 
 message UserPostRequest {

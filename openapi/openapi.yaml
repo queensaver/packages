@@ -22,10 +22,6 @@ paths:
       responses:
         "200":
           description: "OK"
-          #content:
-          #  application/json:
-          #    schema:
-          #      $ref: "#/components/schemas/status"
         "400":
           description: The provided parameters are incorrect
           content:
@@ -35,6 +31,42 @@ paths:
               examples:
                 missingData:
                   value: "Data is missing."
+
+  /scale:
+    get:
+      summary: Get Scale values 
+      description: This returns scale values for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called "token". Note that this returns the scale data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
+      # operationId: getScaleValues
+      parameters:
+      - name: bhive_id
+        in: query
+        description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+        schema:
+          type: string
+      - name: epoch
+        in: query
+        description: The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
+        schema:
+          type: integer
+          format: int64
+      - name: seconds_in_the_past
+        in: query
+        description: How many seconds we go to the past to get the data measurements. 
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: "Successfully returned a list of scale measurements"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/scale_values"
+
+        "400":
+          description: Generic error
+        "500":
+          description: Internal error
 
 
 
@@ -74,6 +106,29 @@ components:
 #      minimum: 1
 #      example: 15
 #      description: ID of the object. The ID is usually determined by the DBMS.
+    scale_values:
+      type: array
+      items:
+        $ref: "#/components/schemas/weight"
+
+    weight:
+      type: object
+      properties:
+        bhive_id:
+          type: string
+          description: bhive_id to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
+          example: "829898a53801"
+        weight:
+          type: number
+          format: float
+          description: actual measurement of weight
+          example: 53.2345
+        epoch:
+          type: integer
+          format: int64
+          description: timestamp of the measurement on one second precision
+          example: 1639169129
+
     user:
       type: object
       properties:

@@ -51,12 +51,43 @@ func NewDefaultApiController(s DefaultApiServicer, opts ...DefaultApiOption) Rou
 func (c *DefaultApiController) Routes() Routes {
 	return Routes{ 
 		{
+			"ScaleGet",
+			strings.ToUpper("Get"),
+			"/v1/scale",
+			c.ScaleGet,
+		},
+		{
 			"UserPost",
 			strings.ToUpper("Post"),
 			"/v1/user",
 			c.UserPost,
 		},
 	}
+}
+
+// ScaleGet - Get Scale values
+func (c *DefaultApiController) ScaleGet(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query()
+	bhiveIdParam := query.Get("bhive_id")
+	epochParam, err := parseInt64Parameter(query.Get("epoch"), false)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	secondsInThePastParam, err := parseInt64Parameter(query.Get("seconds_in_the_past"), false)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	result, err := c.service.ScaleGet(r.Context(), bhiveIdParam, epochParam, secondsInThePastParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // UserPost - Create a user

@@ -10,5 +10,6 @@ go/helpers.go
 go/impl.go
 go/logger.go
 go/model_user.go
+go/model_weight.go
 go/routers.go
 main.go

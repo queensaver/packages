@@ -30,12 +30,86 @@ paths:
                 $ref: '#/components/schemas/errorMessage'
           description: The provided parameters are incorrect
       summary: Create a user
+  /scale:
+    get:
+      description: This returns scale values for a certain, defineable date range.
+        The request needs to send a cookie along with the request. The cookie is stored
+        under the key called "token". Note that this returns the scale data for a
+        QBox Client (independent of the beeHive), the API call for an actual beeHive
+        is different.
+      parameters:
+      - description: The Mac Address of the QBox client. You can get all QBox IDs
+          and clients with the /config API call.
+        explode: true
+        in: query
+        name: bhive_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The Unix Time (epoch) that defines the end time of the scale
+          measurements. The beginning is defined by the seconds_in_the_past parameter.
+        explode: true
+        in: query
+        name: epoch
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: How many seconds we go to the past to get the data measurements.
+        explode: true
+        in: query
+        name: seconds_in_the_past
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/scale_values'
+          description: Successfully returned a list of scale measurements
+        "400":
+          description: Generic error
+        "500":
+          description: Internal error
+      summary: Get Scale values
 components:
   schemas:
     errorMessage:
       description: A text message describing an error
       maxLength: 256
       type: string
+    scale_values:
+      items:
+        $ref: '#/components/schemas/weight'
+      type: array
+    weight:
+      example:
+        weight: 53.2345
+        epoch: 1639169129
+        bhive_id: 829898a53801
+      properties:
+        bhive_id:
+          description: bhive_id to identify the data source. Might become empty in
+            a future iteration as it's redundant with the query parameter.
+          example: 829898a53801
+          type: string
+        weight:
+          description: actual measurement of weight
+          example: 53.2345
+          format: float
+          type: number
+        epoch:
+          description: timestamp of the measurement on one second precision
+          example: 1639169129
+          format: int64
+          type: integer
+      type: object
     user:
       properties:
         username:
