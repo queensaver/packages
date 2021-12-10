@@ -32,6 +32,30 @@ paths:
                 missingData:
                   value: "Data is missing."
 
+  /auth:
+    post:
+      summary: Create a user 
+      description: This call creates a user in the queensaver system.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/user"
+      responses:
+        "200":
+          description: "OK"
+        "400":
+          description: The provided parameters are incorrect
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/errorMessage"
+              examples:
+                missingData:
+                  value: "Data is missing."
+
+
   /scale:
     get:
       summary: Get Scale values 
@@ -41,11 +65,13 @@ paths:
       - name: bhive_id
         in: query
         description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+        example: 829898a53801
         schema:
           type: string
       - name: epoch
         in: query
         description: The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
+        example: 1639170002
         schema:
           type: integer
           format: int64

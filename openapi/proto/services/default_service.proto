@@ -17,9 +17,16 @@ import public "models/user.proto";
 import public "models/weight.proto";
 
 service DefaultService {
+  rpc AuthPost (AuthPostRequest) returns (google.protobuf.Empty);
+
   rpc ScaleGet (ScaleGetRequest) returns (ScaleGetResponse);
 
   rpc UserPost (UserPostRequest) returns (google.protobuf.Empty);
+
+}
+
+message AuthPostRequest {
+  User user = 1;
 
 }
 

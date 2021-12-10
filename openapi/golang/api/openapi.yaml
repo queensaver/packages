@@ -30,6 +30,28 @@ paths:
                 $ref: '#/components/schemas/errorMessage'
           description: The provided parameters are incorrect
       summary: Create a user
+  /auth:
+    post:
+      description: This call creates a user in the queensaver system.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+        required: true
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              examples:
+                missingData:
+                  value: Data is missing.
+              schema:
+                $ref: '#/components/schemas/errorMessage'
+          description: The provided parameters are incorrect
+      summary: Create a user
   /scale:
     get:
       description: This returns scale values for a certain, defineable date range.
@@ -40,6 +62,7 @@ paths:
       parameters:
       - description: The Mac Address of the QBox client. You can get all QBox IDs
           and clients with the /config API call.
+        example: 829898a53801
         explode: true
         in: query
         name: bhive_id
@@ -49,6 +72,7 @@ paths:
         style: form
       - description: The Unix Time (epoch) that defines the end time of the scale
           measurements. The beginning is defined by the seconds_in_the_past parameter.
+        example: 1639170002
         explode: true
         in: query
         name: epoch
