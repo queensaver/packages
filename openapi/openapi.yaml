@@ -39,7 +39,7 @@ paths:
   /login:
     post:
       summary: Authenticate a user against the system.
-      description: This call is meant for interactive web applications
+      description: This call is meant for interactive web applications. Be aware that the server returns a cookie with a 24 hour lifetime. 
       security: []
       requestBody:
         required: true
@@ -89,6 +89,7 @@ paths:
       - name: bhive_id
         in: query
         description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+        required: true
         example: 829898a53801
         schema:
           type: string
@@ -96,12 +97,14 @@ paths:
         in: query
         description: The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
         example: 1639170002
+        required: true
         schema:
           type: integer
           format: int64
       - name: seconds_in_the_past
         in: query
         description: How many seconds we go to the past to get the data measurements. 
+        required: true
         schema:
           type: integer
           format: int64
