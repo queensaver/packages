@@ -124,7 +124,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/scale_values'
+                items:
+                  $ref: '#/components/schemas/weight'
+                type: array
           description: Successfully returned a list of scale measurements
         "400":
           description: Generic error

@@ -1824,7 +1824,10 @@ How many seconds we go to the past to get the data measurements.
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/scale_values"
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/weight"
+        }
       }
     }
   }
