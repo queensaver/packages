@@ -207,8 +207,6 @@ components:
       - username
       type: object
     bhive:
-      example:
-        bhive_id: 829898a53801
       properties:
         bhive_id:
           description: The ID of a beehive. Is unique for that user.
@@ -237,7 +235,7 @@ components:
           type: string
         bhive:
           items:
-            $ref: '#/components/schemas/bhive'
+            $ref: '#/components/schemas/bbox_bhive'
           type: array
       type: object
     user:
@@ -267,6 +265,16 @@ components:
       - lastName
       - password
       - username
+      type: object
+    bbox_bhive:
+      example:
+        bhive_id: 829898a53801
+      properties:
+        bhive_id:
+          description: The ID of a beehive. Is unique for that user.
+          example: 829898a53801
+          maxLength: 256
+          type: string
       type: object
   securitySchemes:
     cookieAuth:

@@ -240,7 +240,10 @@ components:
       type: object
       properties:
         bbox_id:
-          $ref: "#/components/schemas/id"
+          type: integer
+          minimum: 1
+          example: 15
+          description: ID of the object. The ID is usually determined by the DBMS.
         schedule:
           type: string
           maxLength: 256
@@ -249,7 +252,15 @@ components:
         bhive:
           type: array
           items:
-            $ref: "#/components/schemas/bhive"
+            #$ref: "#/components/schemas/bhive" # TODO: unsure why this doesn't work
+            type: object
+            properties:
+              bhive_id:
+                type: string
+                maxLength: 256
+                description: The ID of a beehive. Is unique for that user.
+                example: "829898a53801"
+
 
     user:
       type: object

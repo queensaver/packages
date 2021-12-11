@@ -1,5 +1,6 @@
 README.md
 models/bbox.proto
+models/bbox_bhive.proto
 models/bhive.proto
 models/user.proto
 models/weight.proto

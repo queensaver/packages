@@ -850,7 +850,10 @@ ul.nav-tabs {
   "type" : "object",
   "properties" : {
     "bbox_id" : {
-      "$ref" : "#/components/schemas/id"
+      "minimum" : 1,
+      "type" : "integer",
+      "description" : "ID of the object. The ID is usually determined by the DBMS.",
+      "example" : 15
     },
     "schedule" : {
       "maxLength" : 256,
@@ -861,8 +864,19 @@ ul.nav-tabs {
     "bhive" : {
       "type" : "array",
       "items" : {
-        "$ref" : "#/components/schemas/bhive"
+        "$ref" : "#/components/schemas/bbox_bhive"
       }
+    }
+  }
+};
+    defs["bbox_bhive"] = {
+  "type" : "object",
+  "properties" : {
+    "bhive_id" : {
+      "maxLength" : 256,
+      "type" : "string",
+      "description" : "The ID of a beehive. Is unique for that user.",
+      "example" : "829898a53801"
     }
   }
 };
