@@ -114,10 +114,9 @@ paths:
           content:
             application/json:
               schema:
-                type: array   # <------------
+                type: array
                 items:
-                  $ref: "#/components/schemas/weight"   # <------------
-                  # $ref: "#/components/schemas/scale_values"   # <------------
+                  $ref: "#/components/schemas/weight"
 
         "400":
           description: Generic error
@@ -169,13 +168,9 @@ components:
 #      minimum: 1
 #      example: 15
 #      description: ID of the object. The ID is usually determined by the DBMS.
-    scale_values:
-      type: array   # <------------
-      items:
-        $ref: "#/components/schemas/weight"   # <------------
 
     weight:
-      type: object   # <------------
+      type: object
       properties:
         bhive_id:
           type: string

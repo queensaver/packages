@@ -141,10 +141,6 @@ components:
       description: A text message describing an error
       maxLength: 256
       type: string
-    scale_values:
-      items:
-        $ref: '#/components/schemas/weight'
-      type: array
     weight:
       example:
         weight: 53.2345
