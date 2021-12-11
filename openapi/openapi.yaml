@@ -18,7 +18,6 @@ paths:
       description: This call creates a user in the queensaver system.
       security: []
       requestBody:
-        required: true
         content:
           application/json:
             schema:
