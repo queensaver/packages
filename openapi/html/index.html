@@ -857,6 +857,12 @@ ul.nav-tabs {
       "type" : "string",
       "description" : "A cron type of description of when the sensore measurements are supposed to be done.",
       "example" : "03 6,12,16,20 * * *"
+    },
+    "bhive" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/components/schemas/bhive"
+      }
     }
   }
 };

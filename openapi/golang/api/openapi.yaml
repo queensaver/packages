@@ -207,6 +207,8 @@ components:
       - username
       type: object
     bhive:
+      example:
+        bhive_id: 829898a53801
       properties:
         bhive_id:
           description: The ID of a beehive. Is unique for that user.
@@ -218,6 +220,9 @@ components:
       example:
         bbox_id: 15
         schedule: 03 6,12,16,20 * * *
+        bhive:
+        - bhive_id: 829898a53801
+        - bhive_id: 829898a53801
       properties:
         bbox_id:
           description: ID of the object. The ID is usually determined by the DBMS.
@@ -230,6 +235,10 @@ components:
           example: 03 6,12,16,20 * * *
           maxLength: 256
           type: string
+        bhive:
+          items:
+            $ref: '#/components/schemas/bhive'
+          type: array
       type: object
     user:
       properties:
