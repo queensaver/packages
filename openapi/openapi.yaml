@@ -63,6 +63,29 @@ paths:
                 $ref: "#/components/schemas/errorMessage"
 
 
+  /bboxes:
+    get:
+      summary: Get QBox metadata
+      description: This returns QBox metadata for the logged in user. The request needs to present a valid session cookie. There are no query parameters needed here, the request will return all known bboxes.
+      security:
+      - cookieAuth: []
+      responses:
+        "200":
+          description: "QBox metadata"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/bbox"
+
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+
+
   /scale:
     get:
       summary: Get Scale values 
@@ -119,7 +142,7 @@ paths:
                   $ref: "#/components/schemas/weight"
 
         "400":
-          description: Generic error
+          description: Client error
         "500":
           description: Internal error
 
@@ -163,11 +186,11 @@ components:
 #        minItems: 3
 #        items:
 #          $ref: "#/components/schemas/mark"
-#    id:
-#      type: integer
-#      minimum: 1
-#      example: 15
-#      description: ID of the object. The ID is usually determined by the DBMS.
+    id:
+      type: integer
+      minimum: 1
+      example: 15
+      description: ID of the object. The ID is usually determined by the DBMS.
 
     weight:
       type: object
@@ -204,11 +227,33 @@ components:
       - username
       - password
 
+    bhive:
+      type: object
+      properties:
+        bhive_id:
+          type: string
+          maxLength: 256
+          description: The ID of a beehive. Is unique for that user.
+          example: "829898a53801"
+
+    bbox:
+      type: object
+      properties:
+        bbox_id:
+          $ref: "#/components/schemas/id"
+        schedule:
+          type: string
+          maxLength: 256
+          description: A cron type of description of when the sensore measurements are supposed to be done.
+          example: "03 6,12,16,20 * * *"
+#        bhive:
+#          type: array
+#          items:
+#            $ref: "#/components/schemas/bhive"
+
     user:
       type: object
       properties:
-        #id:
-        #  $ref: "#/components/schemas/id"
         username:
           type: string
           maxLength: 256

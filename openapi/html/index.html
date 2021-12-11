@@ -846,6 +846,31 @@ ul.nav-tabs {
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+    defs["bbox"] = {
+  "type" : "object",
+  "properties" : {
+    "bbox_id" : {
+      "$ref" : "#/components/schemas/id"
+    },
+    "schedule" : {
+      "maxLength" : 256,
+      "type" : "string",
+      "description" : "A cron type of description of when the sensore measurements are supposed to be done.",
+      "example" : "03 6,12,16,20 * * *"
+    }
+  }
+};
+    defs["bhive"] = {
+  "type" : "object",
+  "properties" : {
+    "bhive_id" : {
+      "maxLength" : 256,
+      "type" : "string",
+      "description" : "The ID of a beehive. Is unique for that user.",
+      "example" : "829898a53801"
+    }
+  }
+};
     defs["user"] = {
   "required" : [ "firstName", "lastName", "password", "username" ],
   "type" : "object",
@@ -916,6 +941,9 @@ ul.nav-tabs {
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
+                    <li data-group="Default" data-name="bboxesGet" class="">
+                      <a href="#api-Default-bboxesGet">bboxesGet</a>
+                    </li>
                     <li data-group="Default" data-name="loginPost" class="">
                       <a href="#api-Default-loginPost">loginPost</a>
                     </li>
@@ -948,6 +976,394 @@ ul.nav-tabs {
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
+                    <div id="api-Default-bboxesGet">
+                      <article id="api-Default-bboxesGet-0" data-group="User" data-name="bboxesGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>bboxesGet</h1>
+                          <p>Get QBox metadata</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This returns QBox metadata for the logged in user. The request needs to present a valid session cookie. There are no query parameters needed here, the request will return all known bboxes.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/bboxes</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-bboxesGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-bboxesGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-bboxesGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-bboxesGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-bboxesGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-bboxesGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-bboxesGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-bboxesGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-bboxesGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-bboxesGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-bboxesGet-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-bboxesGet-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-bboxesGet-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET \
+ \
+ -H "Accept: application/json" \
+ "https://api.queensaver.com/v1/bboxes"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-bboxesGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+
+        try {
+            array[bbox] result = apiInstance.bboxesGet();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#bboxesGet");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-bboxesGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+
+        try {
+            array[bbox] result = apiInstance.bboxesGet();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#bboxesGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-bboxesGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-bboxesGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+// Get QBox metadata
+[apiInstance bboxesGetWithCompletionHandler: 
+              ^(array[bbox] output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-bboxesGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.bboxesGet(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-bboxesGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-bboxesGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class bboxesGetExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+
+            try {
+                // Get QBox metadata
+                array[bbox] result = apiInstance.bboxesGet();
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.bboxesGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-bboxesGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+
+try {
+    $result = $api_instance->bboxesGet();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->bboxesGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-bboxesGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+
+eval {
+    my $result = $api_instance->bboxesGet();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->bboxesGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-bboxesGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+
+try:
+    # Get QBox metadata
+    api_response = api_instance.bboxes_get()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->bboxesGet: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-bboxesGet-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.bboxesGet(&context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-bboxesGet-title-200"></h3>
+                            <p id="examples-Default-bboxesGet-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `QBox metadata`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-bboxesGet-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-bboxesGet-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-bboxesGet-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-bboxesGet-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-bboxesGet-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-bboxesGet-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-bboxesGet-200-schema">
+                                  <div id="responses-Default-bboxesGet-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "QBox metadata",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/bbox"
+        }
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-bboxesGet-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-bboxesGet-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-bboxesGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-Default-bboxesGet-title-400"></h3>
+                            <p id="examples-Default-bboxesGet-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-bboxesGet-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-bboxesGet-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-bboxesGet-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-bboxesGet-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-bboxesGet-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-bboxesGet-title-500"></h3>
+                            <p id="examples-Default-bboxesGet-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-bboxesGet-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-bboxesGet-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-bboxesGet-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-bboxesGet-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-bboxesGet-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-Default-loginPost">
                       <article id="api-Default-loginPost-0" data-group="User" data-name="loginPost" data-version="0">
                         <div class="pull-left">
@@ -1866,7 +2282,7 @@ How many seconds we go to the past to get the data measurements.
                             <h3 id="examples-Default-scaleGet-title-400"></h3>
                             <p id="examples-Default-scaleGet-description-400" class="marked"></p>
                             <script>
-                              var responseDefault400_description = `Generic error`;
+                              var responseDefault400_description = `Client error`;
                               var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
                               if (responseDefault400_description_break == -1) {
                                 $("#examples-Default-scaleGet-title-400").text("Status: 400 - " + responseDefault400_description);

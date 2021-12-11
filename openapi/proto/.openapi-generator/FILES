@@ -1,4 +1,6 @@
 README.md
+models/bbox.proto
+models/bhive.proto
 models/user.proto
 models/weight.proto
 services/default_service.proto

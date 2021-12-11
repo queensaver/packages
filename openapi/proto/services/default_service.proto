@@ -13,16 +13,23 @@ syntax = "proto3";
 package openapi;
 
 import "google/protobuf/empty.proto";
+import public "models/bbox.proto";
 import public "models/user.proto";
 import public "models/weight.proto";
 
 service DefaultService {
+  rpc BboxesGet (google.protobuf.Empty) returns (BboxesGetResponse);
+
   rpc LoginPost (LoginPostRequest) returns (google.protobuf.Empty);
 
   rpc ScaleGet (ScaleGetRequest) returns (ScaleGetResponse);
 
   rpc UserPost (UserPostRequest) returns (google.protobuf.Empty);
 
+}
+
+message BboxesGetResponse {
+  repeated Bbox data = 1;
 }
 
 message LoginPostRequest {

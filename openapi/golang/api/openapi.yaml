@@ -60,6 +60,27 @@ paths:
           description: The provided parameters are incorrect
       security: []
       summary: Authenticate a user against the system.
+  /bboxes:
+    get:
+      description: This returns QBox metadata for the logged in user. The request
+        needs to present a valid session cookie. There are no query parameters needed
+        here, the request will return all known bboxes.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/bbox'
+                type: array
+          description: QBox metadata
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      security:
+      - cookieAuth: []
+      summary: Get QBox metadata
   /scale:
     get:
       description: This returns scale values for a certain, defineable date range.
@@ -129,7 +150,7 @@ paths:
                 type: array
           description: Successfully returned a list of scale measurements
         "400":
-          description: Generic error
+          description: Client error
         "500":
           description: Internal error
       security:
@@ -141,6 +162,11 @@ components:
       description: A text message describing an error
       maxLength: 256
       type: string
+    id:
+      description: ID of the object. The ID is usually determined by the DBMS.
+      example: 15
+      minimum: 1
+      type: integer
     weight:
       example:
         weight: 53.2345
@@ -179,6 +205,31 @@ components:
       required:
       - password
       - username
+      type: object
+    bhive:
+      properties:
+        bhive_id:
+          description: The ID of a beehive. Is unique for that user.
+          example: 829898a53801
+          maxLength: 256
+          type: string
+      type: object
+    bbox:
+      example:
+        bbox_id: 15
+        schedule: 03 6,12,16,20 * * *
+      properties:
+        bbox_id:
+          description: ID of the object. The ID is usually determined by the DBMS.
+          example: 15
+          minimum: 1
+          type: integer
+        schedule:
+          description: A cron type of description of when the sensore measurements
+            are supposed to be done.
+          example: 03 6,12,16,20 * * *
+          maxLength: 256
+          type: string
       type: object
     user:
       properties:

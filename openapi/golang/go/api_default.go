@@ -51,6 +51,12 @@ func NewDefaultApiController(s DefaultApiServicer, opts ...DefaultApiOption) Rou
 func (c *DefaultApiController) Routes() Routes {
 	return Routes{ 
 		{
+			"BboxesGet",
+			strings.ToUpper("Get"),
+			"/v1/bboxes",
+			c.BboxesGet,
+		},
+		{
 			"LoginPost",
 			strings.ToUpper("Post"),
 			"/v1/login",
@@ -69,6 +75,19 @@ func (c *DefaultApiController) Routes() Routes {
 			c.UserPost,
 		},
 	}
+}
+
+// BboxesGet - Get QBox metadata
+func (c *DefaultApiController) BboxesGet(w http.ResponseWriter, r *http.Request) {
+	result, err := c.service.BboxesGet(r.Context())
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // LoginPost - Authenticate a user against the system.
