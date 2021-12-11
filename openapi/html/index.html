@@ -847,6 +847,7 @@ ul.nav-tabs {
     // Script section to load models into a JS Var
     var defs = {}
     defs["user"] = {
+  "required" : [ "firstName", "lastName", "password", "username" ],
   "type" : "object",
   "properties" : {
     "username" : {
@@ -1389,7 +1390,7 @@ Password
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  \
  -H "Accept: application/json" \
- "https://api.queensaver.com/v1/scale?bhive_id=829898a53801&epoch=1639170002&seconds_in_the_past=789"
+ "https://api.queensaver.com/v1/scale?bhive_id=829898a53801&epoch=1639170002&seconds_in_the_past=7200"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-scaleGet-0-java">
@@ -1416,7 +1417,7 @@ public class DefaultApiExample {
         String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
         String bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
-        Long secondsInThePast = 789; // Long | How many seconds we go to the past to get the data measurements.
+        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 
         try {
@@ -1440,7 +1441,7 @@ public class DefaultApiExample {
         String qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
         String bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
         Long epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
-        Long secondsInThePast = 789; // Long | How many seconds we go to the past to get the data measurements.
+        Long secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
         String token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 
         try {
@@ -1471,7 +1472,7 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
 String *qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
 String *bhiveId = 829898a53801; // The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (default to null)
 Long *epoch = 1639170002; // The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter. (default to null)
-Long *secondsInThePast = 789; // How many seconds we go to the past to get the data measurements. (default to null)
+Long *secondsInThePast = 7200; // How many seconds we go to the past to get the data measurements. (default to null)
 String *token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 
 // Get Scale values
@@ -1506,7 +1507,7 @@ var api = new QueensaverApi.DefaultApi()
 var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // {String} Either the cookie or this Q-Token must be set to be authorized for the API call.
 var bhiveId = 829898a53801; // {String} The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
 var epoch = 1639170002; // {Long} The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
-var secondsInThePast = 789; // {Long} How many seconds we go to the past to get the data measurements.
+var secondsInThePast = 7200; // {Long} How many seconds we go to the past to get the data measurements.
 var opts = {
   'token': 8B0FE5CF-C096-4B3E-8748-27906B4A9449 // {String} Either this cookie or the Q-Token must be set to be authorized for the API call.
 };
@@ -1548,7 +1549,7 @@ namespace Example
             var qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
             var bhiveId = 829898a53801;  // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (default to null)
             var epoch = 1639170002;  // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter. (default to null)
-            var secondsInThePast = 789;  // Long | How many seconds we go to the past to get the data measurements. (default to null)
+            var secondsInThePast = 7200;  // Long | How many seconds we go to the past to get the data measurements. (default to null)
             var token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449;  // String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional)  (default to null)
 
             try {
@@ -1578,7 +1579,7 @@ $api_instance = new OpenAPITools\Client\Api\DefaultApi();
 $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either the cookie or this Q-Token must be set to be authorized for the API call.
 $bhiveId = 829898a53801; // String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
 $epoch = 1639170002; // Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
-$secondsInThePast = 789; // Long | How many seconds we go to the past to get the data measurements.
+$secondsInThePast = 7200; // Long | How many seconds we go to the past to get the data measurements.
 $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 
 try {
@@ -1605,7 +1606,7 @@ my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
 my $qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either the cookie or this Q-Token must be set to be authorized for the API call.
 my $bhiveId = 829898a53801; # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
 my $epoch = 1639170002; # Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
-my $secondsInThePast = 789; # Long | How many seconds we go to the past to get the data measurements.
+my $secondsInThePast = 7200; # Long | How many seconds we go to the past to get the data measurements.
 my $token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; # String | Either this cookie or the Q-Token must be set to be authorized for the API call.
 
 eval {
@@ -1634,7 +1635,7 @@ api_instance = openapi_client.DefaultApi()
 qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either the cookie or this Q-Token must be set to be authorized for the API call. (default to null)
 bhiveId = 829898a53801 # String | The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call. (default to null)
 epoch = 1639170002 # Long | The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter. (default to null)
-secondsInThePast = 789 # Long | How many seconds we go to the past to get the data measurements. (default to null)
+secondsInThePast = 7200 # Long | How many seconds we go to the past to get the data measurements. (default to null)
 token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449 # String | Either this cookie or the Q-Token must be set to be authorized for the API call. (optional) (default to null)
 
 try:
@@ -1652,7 +1653,7 @@ pub fn main() {
     let qToken = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
     let bhiveId = 829898a53801; // String
     let epoch = 1639170002; // Long
-    let secondsInThePast = 789; // Long
+    let secondsInThePast = 7200; // Long
     let token = 8B0FE5CF-C096-4B3E-8748-27906B4A9449; // String
 
     let mut context = DefaultApi::Context::default();

@@ -105,6 +105,7 @@ paths:
         in: query
         description: How many seconds we go to the past to get the data measurements. 
         required: true
+        example: 7200
         schema:
           type: integer
           format: int64
@@ -225,3 +226,8 @@ components:
           maxLength: 256
           description: Last name of the user
           example: Ecker
+      required:
+      - username
+      - password
+      - firstName
+      - lastName

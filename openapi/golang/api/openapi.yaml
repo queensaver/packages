@@ -111,6 +111,7 @@ paths:
           type: integer
         style: form
       - description: How many seconds we go to the past to get the data measurements.
+        example: 7200
         explode: true
         in: query
         name: seconds_in_the_past
@@ -199,6 +200,11 @@ components:
           example: Ecker
           maxLength: 256
           type: string
+      required:
+      - firstName
+      - lastName
+      - password
+      - username
       type: object
   securitySchemes:
     cookieAuth:
