@@ -1042,8 +1042,8 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
-String *username = username_example; // Username, must be unique to the queensaver system. We encourage using email-addresses here. (optional) (default to null)
-String *password = password_example; // Password (optional) (default to null)
+String *username = username_example; // Username, must be unique to the queensaver system. We encourage using email-addresses here. (default to null)
+String *password = password_example; // Password (default to null)
 
 // Authenticate a user against the system.
 [apiInstance loginPostWith:username
@@ -1061,10 +1061,8 @@ String *password = password_example; // Password (optional) (default to null)
 
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
-var opts = {
-  'username': username_example, // {String} Username, must be unique to the queensaver system. We encourage using email-addresses here.
-  'password': password_example // {String} Password
-};
+var username = username_example; // {String} Username, must be unique to the queensaver system. We encourage using email-addresses here.
+var password = password_example; // {String} Password
 
 var callback = function(error, data, response) {
   if (error) {
@@ -1073,7 +1071,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.loginPost(opts, callback);
+api.loginPost(username, password, callback);
 </code></pre>
                             </div>
 
@@ -1096,8 +1094,8 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
-            var username = username_example;  // String | Username, must be unique to the queensaver system. We encourage using email-addresses here. (optional)  (default to null)
-            var password = password_example;  // String | Password (optional)  (default to null)
+            var username = username_example;  // String | Username, must be unique to the queensaver system. We encourage using email-addresses here. (default to null)
+            var password = password_example;  // String | Password (default to null)
 
             try {
                 // Authenticate a user against the system.
@@ -1155,12 +1153,12 @@ from pprint import pprint
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
-username = username_example # String | Username, must be unique to the queensaver system. We encourage using email-addresses here. (optional) (default to null)
-password = password_example # String | Password (optional) (default to null)
+username = username_example # String | Username, must be unique to the queensaver system. We encourage using email-addresses here. (default to null)
+password = password_example # String | Password (default to null)
 
 try:
     # Authenticate a user against the system.
-    api_instance.login_post(username=username, password=password)
+    api_instance.login_post(username, password)
 except ApiException as e:
     print("Exception when calling DefaultApi->loginPost: %s\n" % e)</code></pre>
                             </div>
@@ -1197,7 +1195,7 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                  <tr><td style="width:150px;">username</td>
+                                  <tr><td style="width:150px;">username*</td>
 <td>
 
 
@@ -1212,12 +1210,15 @@ pub fn main() {
 Username, must be unique to the queensaver system. We encourage using email-addresses here.
                     </div>
             </div>
+                <div class="inner required">
+                    Required
+                </div>
         </div>
     </div>
 </td>
 </tr>
 
-                                  <tr><td style="width:150px;">password</td>
+                                  <tr><td style="width:150px;">password*</td>
 <td>
 
 
@@ -1235,6 +1236,9 @@ Username, must be unique to the queensaver system. We encourage using email-addr
 Password
                     </div>
             </div>
+                <div class="inner required">
+                    Required
+                </div>
         </div>
     </div>
 </td>

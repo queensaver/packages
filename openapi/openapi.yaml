@@ -201,6 +201,9 @@ components:
           format: password
           description: Password
           example: trustno1
+      required:
+      - username
+      - password
 
     user:
       type: object

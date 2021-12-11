@@ -4,3 +4,7 @@ all:
 	docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate -i /local/openapi.yaml -g go-server -o /local/golang --git-repo-id queensaver --git-user-id packages
 	cp golang/go/* ../../cloud/api/openapi/
 	rm ../../cloud/api/openapi/api_default.go
+
+update_and_push: all
+	git commit -am 'openapi updates'
+	git push

@@ -177,6 +177,9 @@ components:
           example: trustno1
           format: password
           type: string
+      required:
+      - password
+      - username
       type: object
     user:
       properties:
