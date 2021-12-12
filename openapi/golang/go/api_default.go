@@ -57,6 +57,12 @@ func (c *DefaultApiController) Routes() Routes {
 			c.BboxesGet,
 		},
 		{
+			"HivesGet",
+			strings.ToUpper("Get"),
+			"/v1/hives",
+			c.HivesGet,
+		},
+		{
 			"LoginPost",
 			strings.ToUpper("Post"),
 			"/v1/login",
@@ -80,6 +86,21 @@ func (c *DefaultApiController) Routes() Routes {
 // BboxesGet - Get QBox metadata
 func (c *DefaultApiController) BboxesGet(w http.ResponseWriter, r *http.Request) {
 	result, err := c.service.BboxesGet(r.Context())
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
+}
+
+// HivesGet - Get Hive metadata
+func (c *DefaultApiController) HivesGet(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query()
+	bhiveIdParam := query.Get("bhive_id")
+	result, err := c.service.HivesGet(r.Context(), bhiveIdParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)

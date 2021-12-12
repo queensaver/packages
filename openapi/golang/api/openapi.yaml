@@ -60,6 +60,37 @@ paths:
           description: The provided parameters are incorrect
       security: []
       summary: Authenticate a user against the system.
+  /hives:
+    get:
+      description: This returns all hive metadata for the currently logged in user.
+      parameters:
+      - description: The Unique ID (Mac Address) of the QBox client. If set, the query
+          will only return the Hive that sits on the QBox client (or nothing if there
+          is no hive associated).
+        example: 829898a53801
+        explode: true
+        in: query
+        name: bhive_id
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/hive'
+                type: array
+          description: Hives
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      security:
+      - cookieAuth: []
+      summary: Get Hive metadata
   /bboxes:
     get:
       description: This returns QBox metadata for the logged in user. The request
@@ -214,6 +245,48 @@ components:
           maxLength: 256
           type: string
       type: object
+    hive:
+      example:
+        public: true
+        name: B25
+        format: Dadant
+        comment: This hive needs to be replaced next year
+        capacity: 10
+        frame:
+        - function: Dadant
+        - function: Dadant
+      properties:
+        name:
+          description: Name of the hive. Can be chosen by the user.
+          example: B25
+          type: string
+        public:
+          description: If the hive can be viewed by other users in the queensaver
+            system
+          example: true
+          type: boolean
+        comment:
+          description: Random note or user comment
+          example: This hive needs to be replaced next year
+          type: string
+        capacity:
+          description: How many honeycombs a frame can load
+          example: 10
+          maximum: 50
+          minimum: 1
+          type: integer
+        format:
+          description: The format of the frame
+          enum:
+          - Zander
+          - Dadant
+          example: Dadant
+          type: string
+        frame:
+          items:
+            $ref: '#/components/schemas/hive_frame'
+          type: array
+      type: object
     bbox:
       example:
         bbox_id: 15
@@ -265,6 +338,19 @@ components:
       - lastName
       - password
       - username
+      type: object
+    hive_frame:
+      example:
+        function: Dadant
+      properties:
+        function:
+          description: The format of the frame
+          enum:
+          - Breed
+          - Honey
+          - Unspecified
+          example: Dadant
+          type: string
       type: object
     bbox_bhive:
       example:

@@ -12,6 +12,8 @@ go/logger.go
 go/model_bbox.go
 go/model_bbox_bhive.go
 go/model_bhive.go
+go/model_hive.go
+go/model_hive_frame.go
 go/model_user.go
 go/model_weight.go
 go/routers.go

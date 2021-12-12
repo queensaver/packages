@@ -12,6 +12,7 @@ security:
 - cookieAuth: []
 
 paths: 
+
   /user:
     post:
       summary: Create a user 
@@ -63,6 +64,35 @@ paths:
                 $ref: "#/components/schemas/errorMessage"
 
 
+  /hives:
+    get:
+      summary: Get Hive metadata
+      description: This returns all hive metadata for the currently logged in user.
+      security:
+      - cookieAuth: []
+      parameters:
+      - name: bhive_id
+        in: query
+        description: The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
+        required: false
+        example: 829898a53801
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Hives"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/hive"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+
   /bboxes:
     get:
       summary: Get QBox metadata
@@ -83,8 +113,6 @@ paths:
           description: Client error
         "500":
           description: Internal error
-
-
 
   /scale:
     get:
@@ -236,6 +264,48 @@ components:
           description: The ID of a beehive. Is unique for that user.
           example: "829898a53801"
 
+    hive:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "B25"
+          description: Name of the hive. Can be chosen by the user.
+        public:
+          type: boolean
+          description: If the hive can be viewed by other users in the queensaver system
+          example: true
+        comment:
+          type: string
+          example: "This hive needs to be replaced next year"
+          description: Random note or user comment
+        capacity:
+          type: integer
+          minimum: 1
+          maximum: 50
+          example: 10
+          description: How many honeycombs a frame can load
+        format:
+          type: string
+          enum:
+          - Zander
+          - Dadant
+          description: The format of the frame
+          example: "Dadant"
+        frame:
+          type: array
+          items:
+            type: object
+            properties:
+              function:
+                type: string
+                enum:
+                - Breed
+                - Honey
+                - Unspecified 
+                description: The format of the frame
+                example: "Dadant"
+        
     bbox:
       type: object
       properties:

@@ -2,6 +2,8 @@ README.md
 models/bbox.proto
 models/bbox_bhive.proto
 models/bhive.proto
+models/hive.proto
+models/hive_frame.proto
 models/user.proto
 models/weight.proto
 services/default_service.proto
