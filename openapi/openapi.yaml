@@ -71,6 +71,13 @@ paths:
       security:
       - cookieAuth: []
       parameters:
+      - name: uuid
+        in: query
+        description: The UUID of the hive. If not set, the request will return all hives.
+        required: false
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        schema:
+          type: string
       - name: bhive_id
         in: query
         description: The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).

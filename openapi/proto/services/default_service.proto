@@ -36,8 +36,10 @@ message BboxesGetResponse {
 }
 
 message HivesGetRequest {
+  // The UUID of the hive. If not set, the request will return all hives.
+  string uuid = 1;
   // The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
-  string bhiveId = 1;
+  string bhiveId = 2;
 
 }
 

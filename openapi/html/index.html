@@ -1486,7 +1486,7 @@ pub fn main() {
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
  \
  -H "Accept: application/json" \
- "https://api.queensaver.com/v1/hives?bhive_id=829898a53801"
+ "https://api.queensaver.com/v1/hives?uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3&bhive_id=829898a53801"
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-hivesGet-0-java">
@@ -1510,10 +1510,11 @@ public class DefaultApiExample {
 
         // Create an instance of the API class
         DefaultApi apiInstance = new DefaultApi();
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive. If not set, the request will return all hives.
         String bhiveId = 829898a53801; // String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
 
         try {
-            array[hive] result = apiInstance.hivesGet(bhiveId);
+            array[hive] result = apiInstance.hivesGet(uuid, bhiveId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesGet");
@@ -1530,10 +1531,11 @@ public class DefaultApiExample {
 public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive. If not set, the request will return all hives.
         String bhiveId = 829898a53801; // String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
 
         try {
-            array[hive] result = apiInstance.hivesGet(bhiveId);
+            array[hive] result = apiInstance.hivesGet(uuid, bhiveId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#hivesGet");
@@ -1557,10 +1559,12 @@ public class DefaultApiExample {
 
 // Create an instance of the API class
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the hive. If not set, the request will return all hives. (optional) (default to null)
 String *bhiveId = 829898a53801; // The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated). (optional) (default to null)
 
 // Get Hive metadata
-[apiInstance hivesGetWith:bhiveId
+[apiInstance hivesGetWith:uuid
+    bhiveId:bhiveId
               completionHandler: ^(array[hive] output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -1585,6 +1589,7 @@ cookieAuth.apiKey = "YOUR API KEY";
 // Create an instance of the API class
 var api = new QueensaverApi.DefaultApi()
 var opts = {
+  'uuid': 41C0FE2F-EB0C-45B4-8842-C117E47C35E3, // {String} The UUID of the hive. If not set, the request will return all hives.
   'bhiveId': 829898a53801 // {String} The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
 };
 
@@ -1622,11 +1627,12 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new DefaultApi();
+            var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the hive. If not set, the request will return all hives. (optional)  (default to null)
             var bhiveId = 829898a53801;  // String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated). (optional)  (default to null)
 
             try {
                 // Get Hive metadata
-                array[hive] result = apiInstance.hivesGet(bhiveId);
+                array[hive] result = apiInstance.hivesGet(uuid, bhiveId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling DefaultApi.hivesGet: " + e.Message );
@@ -1648,10 +1654,11 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token',
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive. If not set, the request will return all hives.
 $bhiveId = 829898a53801; // String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
 
 try {
-    $result = $api_instance->hivesGet($bhiveId);
+    $result = $api_instance->hivesGet($uuid, $bhiveId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->hivesGet: ', $e->getMessage(), PHP_EOL;
@@ -1671,10 +1678,11 @@ $WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the hive. If not set, the request will return all hives.
 my $bhiveId = 829898a53801; # String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
 
 eval {
-    my $result = $api_instance->hivesGet(bhiveId => $bhiveId);
+    my $result = $api_instance->hivesGet(uuid => $uuid, bhiveId => $bhiveId);
     print Dumper($result);
 };
 if ($@) {
@@ -1696,11 +1704,12 @@ openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = openapi_client.DefaultApi()
+uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the hive. If not set, the request will return all hives. (optional) (default to null)
 bhiveId = 829898a53801 # String | The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated). (optional) (default to null)
 
 try:
     # Get Hive metadata
-    api_response = api_instance.hives_get(bhiveId=bhiveId)
+    api_response = api_instance.hives_get(uuid=uuid, bhiveId=bhiveId)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DefaultApi->hivesGet: %s\n" % e)</code></pre>
@@ -1710,10 +1719,11 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
 
 pub fn main() {
+    let uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
     let bhiveId = 829898a53801; // String
 
     let mut context = DefaultApi::Context::default();
-    let result = client.hivesGet(bhiveId, &context).wait();
+    let result = client.hivesGet(uuid, bhiveId, &context).wait();
 
     println!("{:?}", result);
 }
@@ -1738,6 +1748,26 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
+                                <tr><td style="width:150px;">uuid</td>
+<td>
+
+
+    <div id="d2e199_hivesGet_uuid">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The UUID of the hive. If not set, the request will return all hives.
+                    </div>
+            </div>
+        </div>
+    </div>
+</td>
+</tr>
+
                                 <tr><td style="width:150px;">bhive_id</td>
 <td>
 

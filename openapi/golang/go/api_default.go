@@ -99,8 +99,9 @@ func (c *DefaultApiController) BboxesGet(w http.ResponseWriter, r *http.Request)
 // HivesGet - Get Hive metadata
 func (c *DefaultApiController) HivesGet(w http.ResponseWriter, r *http.Request) {
 	query := r.URL.Query()
+	uuidParam := query.Get("uuid")
 	bhiveIdParam := query.Get("bhive_id")
-	result, err := c.service.HivesGet(r.Context(), bhiveIdParam)
+	result, err := c.service.HivesGet(r.Context(), uuidParam, bhiveIdParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)
