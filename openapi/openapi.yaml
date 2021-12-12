@@ -271,20 +271,24 @@ components:
           type: string
           example: "B25"
           description: Name of the hive. Can be chosen by the user.
+          x-protobuf-index: 1
         public:
           type: boolean
           description: If the hive can be viewed by other users in the queensaver system
           example: true
+          x-protobuf-index: 2
         comment:
           type: string
           example: "This hive needs to be replaced next year"
           description: Random note or user comment
+          x-protobuf-index: 3
         capacity:
           type: integer
           minimum: 1
           maximum: 50
           example: 10
           description: How many honeycombs a frame can load
+          x-protobuf-index: 4
         format:
           type: string
           enum:
@@ -292,8 +296,10 @@ components:
           - Dadant
           description: The format of the frame
           example: "Dadant"
+          x-protobuf-index: 5
         frame:
           type: array
+          x-protobuf-index: 6
           items:
             type: object
             properties:
@@ -305,6 +311,7 @@ components:
                 - Unspecified 
                 description: The format of the frame
                 example: "Dadant"
+                x-protobuf-index: 1
         
     bbox:
       type: object

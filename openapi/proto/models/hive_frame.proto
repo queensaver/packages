@@ -22,6 +22,6 @@ message HiveFrame {
     UNSPECIFIED = 2;
   }
 
-  FunctionEnum function = 307196890;
+  FunctionEnum function = 1;
 
 }

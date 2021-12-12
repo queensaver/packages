@@ -13,7 +13,7 @@ import (
 	"log"
 	"net/http"
 
-	openapi "github.com/packages/queensaver/go"
+	openapi "github.com/queensaver/packages/openapi/golang/go"
 )
 
 func main() {
