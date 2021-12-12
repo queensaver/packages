@@ -277,6 +277,11 @@ components:
           description: If the hive can be viewed by other users in the queensaver system
           example: true
           x-protobuf-index: 2
+        uuid:
+          type: string
+          example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+          description: Unique Identifier for this hive
+          x-protobuf-index: 7
         comment:
           type: string
           example: "This hive needs to be replaced next year"

@@ -17,6 +17,9 @@ type Hive struct {
 	// If the hive can be viewed by other users in the queensaver system
 	Public bool `json:"public,omitempty"`
 
+	// Unique Identifier for this hive
+	Uuid string `json:"uuid,omitempty"`
+
 	// Random note or user comment
 	Comment string `json:"comment,omitempty"`
 

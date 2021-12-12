@@ -22,6 +22,9 @@ message Hive {
   // If the hive can be viewed by other users in the queensaver system
   bool public = 2;
 
+  // Unique Identifier for this hive
+  string uuid = 7;
+
   // Random note or user comment
   string comment = 3;
 
