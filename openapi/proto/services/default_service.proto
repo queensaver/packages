@@ -10,7 +10,7 @@
 
 syntax = "proto3";
 
-package openapi;
+package openapi.services.defaultservice;
 
 import "google/protobuf/empty.proto";
 import public "models/bbox.proto";
@@ -21,7 +21,13 @@ import public "models/weight.proto";
 service DefaultService {
   rpc BboxesGet (google.protobuf.Empty) returns (BboxesGetResponse);
 
+  rpc HivesDelete (HivesDeleteRequest) returns (google.protobuf.Empty);
+
   rpc HivesGet (HivesGetRequest) returns (HivesGetResponse);
+
+  rpc HivesPost (HivesPostRequest) returns (Hive);
+
+  rpc HivesPut (HivesPutRequest) returns (Hive);
 
   rpc LoginPost (LoginPostRequest) returns (google.protobuf.Empty);
 
@@ -35,6 +41,12 @@ message BboxesGetResponse {
   repeated Bbox data = 1;
 }
 
+message HivesDeleteRequest {
+  // The UUID of the hive.
+  string uuid = 1;
+
+}
+
 message HivesGetRequest {
   // The UUID of the hive. If not set, the request will return all hives.
   string uuid = 1;
@@ -45,6 +57,16 @@ message HivesGetRequest {
 
 message HivesGetResponse {
   repeated Hive data = 1;
+}
+
+message HivesPostRequest {
+  Hive hive = 1;
+
+}
+
+message HivesPutRequest {
+  Hive hive = 1;
+
 }
 
 message LoginPostRequest {

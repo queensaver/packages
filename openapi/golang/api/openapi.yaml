@@ -61,6 +61,28 @@ paths:
       security: []
       summary: Authenticate a user against the system.
   /hives:
+    delete:
+      description: This deletes a hive.
+      parameters:
+      - description: The UUID of the hive.
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        explode: true
+        in: query
+        name: uuid
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Returns 200 if the delete was successful
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      security:
+      - cookieAuth: []
+      summary: Delete a Hive
     get:
       description: This returns all hive metadata for the currently logged in user.
       parameters:
@@ -101,6 +123,49 @@ paths:
       security:
       - cookieAuth: []
       summary: Get Hive metadata
+    post:
+      description: This creates a new hive. A hive is a logical representation of
+        a bee hive that can be connected to hardware.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/hive'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/hive'
+          description: Returns the created hive
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      security:
+      - cookieAuth: []
+      summary: Create Hive metadata
+    put:
+      description: This updates new hive.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/hive'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/hive'
+          description: Returns the updated hive
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+      security:
+      - cookieAuth: []
+      summary: Update Hive metadata
   /bboxes:
     get:
       description: This returns QBox metadata for the logged in user. The request
@@ -262,6 +327,7 @@ components:
         format: Dadant
         comment: This hive needs to be replaced next year
         uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        bhive_id: 829898a53801
         capacity: 10
         frame:
         - function: Dadant
@@ -308,6 +374,12 @@ components:
             $ref: '#/components/schemas/hive_frame'
           type: array
           x-protobuf-index: 6
+        bhive_id:
+          description: The ID of beehive electronics (QBox client).
+          example: 829898a53801
+          maxLength: 256
+          type: string
+          x-protobuf-index: 8
       type: object
     bbox:
       example:
@@ -373,7 +445,7 @@ components:
           - Unspecified
           example: Dadant
           type: string
-          x-protobuf-index: 1
+          x-protobuf-index: 7
       type: object
     bbox_bhive:
       example:

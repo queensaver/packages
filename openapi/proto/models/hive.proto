@@ -41,4 +41,7 @@ message Hive {
 
   repeated HiveFrame frame = 6;
 
+  // The ID of beehive electronics (QBox client).
+  string bhiveUnderscoreid = 8;
+
 }

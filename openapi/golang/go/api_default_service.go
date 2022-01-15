@@ -43,6 +43,23 @@ func (s *DefaultApiService) BboxesGet(ctx context.Context) (ImplResponse, error)
 	return Response(http.StatusNotImplemented, nil), errors.New("BboxesGet method not implemented")
 }
 
+// HivesDelete - Delete a Hive
+func (s *DefaultApiService) HivesDelete(ctx context.Context, uuid string) (ImplResponse, error) {
+	// TODO - update HivesDelete with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	//return Response(200, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("HivesDelete method not implemented")
+}
+
 // HivesGet - Get Hive metadata
 func (s *DefaultApiService) HivesGet(ctx context.Context, uuid string, bhiveId string) (ImplResponse, error) {
 	// TODO - update HivesGet with the required logic for this service method.
@@ -58,6 +75,40 @@ func (s *DefaultApiService) HivesGet(ctx context.Context, uuid string, bhiveId s
 	//return Response(500, nil),nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("HivesGet method not implemented")
+}
+
+// HivesPost - Create Hive metadata
+func (s *DefaultApiService) HivesPost(ctx context.Context, hive Hive) (ImplResponse, error) {
+	// TODO - update HivesPost with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, Hive{}) or use other options such as http.Ok ...
+	//return Response(200, Hive{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("HivesPost method not implemented")
+}
+
+// HivesPut - Update Hive metadata
+func (s *DefaultApiService) HivesPut(ctx context.Context, hive Hive) (ImplResponse, error) {
+	// TODO - update HivesPut with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, Hive{}) or use other options such as http.Ok ...
+	//return Response(200, Hive{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("HivesPut method not implemented")
 }
 
 // LoginPost - Authenticate a user against the system.

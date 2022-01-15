@@ -939,6 +939,13 @@ ul.nav-tabs {
         "$ref" : "#/components/schemas/hive_frame"
       },
       "x-protobuf-index" : 6
+    },
+    "bhive_id" : {
+      "maxLength" : 256,
+      "type" : "string",
+      "description" : "The ID of beehive electronics (QBox client).",
+      "example" : "829898a53801",
+      "x-protobuf-index" : 8
     }
   }
 };
@@ -950,7 +957,7 @@ ul.nav-tabs {
       "description" : "The format of the frame",
       "example" : "Dadant",
       "enum" : [ "Breed", "Honey", "Unspecified" ],
-      "x-protobuf-index" : 1
+      "x-protobuf-index" : 7
     }
   }
 };
@@ -1027,8 +1034,17 @@ ul.nav-tabs {
                     <li data-group="Default" data-name="bboxesGet" class="">
                       <a href="#api-Default-bboxesGet">bboxesGet</a>
                     </li>
+                    <li data-group="Default" data-name="hivesDelete" class="">
+                      <a href="#api-Default-hivesDelete">hivesDelete</a>
+                    </li>
                     <li data-group="Default" data-name="hivesGet" class="">
                       <a href="#api-Default-hivesGet">hivesGet</a>
+                    </li>
+                    <li data-group="Default" data-name="hivesPost" class="">
+                      <a href="#api-Default-hivesPost">hivesPost</a>
+                    </li>
+                    <li data-group="Default" data-name="hivesPut" class="">
+                      <a href="#api-Default-hivesPut">hivesPut</a>
                     </li>
                     <li data-group="Default" data-name="loginPost" class="">
                       <a href="#api-Default-loginPost">loginPost</a>
@@ -1446,6 +1462,377 @@ pub fn main() {
 
 
                             <div class="tab-content" id="responses-Default-bboxesGet-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-hivesDelete">
+                      <article id="api-Default-hivesDelete-0" data-group="User" data-name="hivesDelete" data-version="0">
+                        <div class="pull-left">
+                          <h1>hivesDelete</h1>
+                          <p>Delete a Hive</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This deletes a hive.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/hives</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-hivesDelete-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-hivesDelete-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-hivesDelete-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-hivesDelete-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-hivesDelete-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-hivesDelete-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-hivesDelete-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-hivesDelete-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-hivesDelete-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-hivesDelete-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-hivesDelete-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-hivesDelete-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-hivesDelete-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE \
+ \
+ "https://api.queensaver.com/v1/hives?uuid=41C0FE2F-EB0C-45B4-8842-C117E47C35E3"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-hivesDelete-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive.
+
+        try {
+            apiInstance.hivesDelete(uuid);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#hivesDelete");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-hivesDelete-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        String uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive.
+
+        try {
+            apiInstance.hivesDelete(uuid);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#hivesDelete");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-hivesDelete-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-hivesDelete-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+String *uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // The UUID of the hive. (default to null)
+
+// Delete a Hive
+[apiInstance hivesDeleteWith:uuid
+              completionHandler: ^(NSError* error) {
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesDelete-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // {String} The UUID of the hive.
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.hivesDelete(uuid, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-hivesDelete-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-hivesDelete-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class hivesDeleteExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3;  // String | The UUID of the hive. (default to null)
+
+            try {
+                // Delete a Hive
+                apiInstance.hivesDelete(uuid);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.hivesDelete: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesDelete-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String | The UUID of the hive.
+
+try {
+    $api_instance->hivesDelete($uuid);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->hivesDelete: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesDelete-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; # String | The UUID of the hive.
+
+eval {
+    $api_instance->hivesDelete(uuid => $uuid);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->hivesDelete: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesDelete-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3 # String | The UUID of the hive. (default to null)
+
+try:
+    # Delete a Hive
+    api_instance.hives_delete(uuid)
+except ApiException as e:
+    print("Exception when calling DefaultApi->hivesDelete: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesDelete-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let uuid = 41C0FE2F-EB0C-45B4-8842-C117E47C35E3; // String
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.hivesDelete(uuid, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">uuid*</td>
+<td>
+
+
+    <div id="d2e199_hivesDelete_uuid">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description marked">
+The UUID of the hive.
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-hivesDelete-title-200"></h3>
+                            <p id="examples-Default-hivesDelete-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `Returns 200 if the delete was successful`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-hivesDelete-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-hivesDelete-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-hivesDelete-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-hivesDelete-200" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-hivesDelete-200-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-hivesDelete-title-400"></h3>
+                            <p id="examples-Default-hivesDelete-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-hivesDelete-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-hivesDelete-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-hivesDelete-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-hivesDelete-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-hivesDelete-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-hivesDelete-title-500"></h3>
+                            <p id="examples-Default-hivesDelete-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-hivesDelete-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-hivesDelete-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-hivesDelete-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-hivesDelete-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-hivesDelete-500-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>
@@ -1903,6 +2290,894 @@ The Unique ID (Mac Address) of the QBox client. If set, the query will only retu
 
 
                             <div class="tab-content" id="responses-Default-hivesGet-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-hivesPost">
+                      <article id="api-Default-hivesPost-0" data-group="User" data-name="hivesPost" data-version="0">
+                        <div class="pull-left">
+                          <h1>hivesPost</h1>
+                          <p>Create Hive metadata</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This creates a new hive. A hive is a logical representation of a bee hive that can be connected to hardware.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/hives</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-hivesPost-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-hivesPost-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-hivesPost-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-hivesPost-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-hivesPost-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-hivesPost-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-hivesPost-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-hivesPost-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-hivesPost-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-hivesPost-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-hivesPost-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-hivesPost-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-hivesPost-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST \
+ \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ "https://api.queensaver.com/v1/hives" \
+ -d ''
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-hivesPost-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        Hive hive = ; // Hive | 
+
+        try {
+            hive result = apiInstance.hivesPost(hive);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#hivesPost");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-hivesPost-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Hive hive = ; // Hive | 
+
+        try {
+            hive result = apiInstance.hivesPost(hive);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#hivesPost");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-hivesPost-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-hivesPost-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+Hive *hive = ; //  (optional)
+
+// Create Hive metadata
+[apiInstance hivesPostWith:hive
+              completionHandler: ^(hive output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesPost-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var opts = {
+  'hive':  // {Hive} 
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.hivesPost(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-hivesPost-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-hivesPost-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class hivesPostExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var hive = new Hive(); // Hive |  (optional) 
+
+            try {
+                // Create Hive metadata
+                hive result = apiInstance.hivesPost(hive);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.hivesPost: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesPost-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$hive = ; // Hive | 
+
+try {
+    $result = $api_instance->hivesPost($hive);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->hivesPost: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesPost-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $hive = WWW::OPenAPIClient::Object::Hive->new(); # Hive | 
+
+eval {
+    my $result = $api_instance->hivesPost(hive => $hive);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->hivesPost: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesPost-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+hive =  # Hive |  (optional)
+
+try:
+    # Create Hive metadata
+    api_response = api_instance.hives_post(hive=hive)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->hivesPost: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesPost-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let hive = ; // Hive
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.hivesPost(hive, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">hive </td>
+<td>
+<p class="marked"></p>
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/hive"
+      }
+    }
+  }
+};
+
+  var schema = findNode('schema',schemaWrapper).schema;
+  if (!schema) {
+    schema = schemaWrapper.schema;
+  }
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_hivesPost_hive');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_hivesPost_hive"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-hivesPost-title-200"></h3>
+                            <p id="examples-Default-hivesPost-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `Returns the created hive`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-hivesPost-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-hivesPost-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-hivesPost-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-hivesPost-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-hivesPost-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-hivesPost-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-hivesPost-200-schema">
+                                  <div id="responses-Default-hivesPost-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Returns the created hive",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/hive"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-hivesPost-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-hivesPost-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-hivesPost-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-Default-hivesPost-title-400"></h3>
+                            <p id="examples-Default-hivesPost-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-hivesPost-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-hivesPost-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-hivesPost-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-hivesPost-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-hivesPost-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-hivesPost-title-500"></h3>
+                            <p id="examples-Default-hivesPost-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-hivesPost-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-hivesPost-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-hivesPost-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-hivesPost-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-hivesPost-500-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-hivesPut">
+                      <article id="api-Default-hivesPut-0" data-group="User" data-name="hivesPut" data-version="0">
+                        <div class="pull-left">
+                          <h1>hivesPut</h1>
+                          <p>Update Hive metadata</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This updates new hive.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/hives</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-hivesPut-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-hivesPut-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-hivesPut-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-hivesPut-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-hivesPut-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-hivesPut-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-hivesPut-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-hivesPut-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-hivesPut-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-hivesPut-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-hivesPut-0-python">Python</a></li>
+                          <li class=""><a href="#examples-Default-hivesPut-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-hivesPut-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT \
+ \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ "https://api.queensaver.com/v1/hives" \
+ -d ''
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-hivesPut-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: cookieAuth
+        ApiKeyAuth cookieAuth = (ApiKeyAuth) defaultClient.getAuthentication("cookieAuth");
+        cookieAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //cookieAuth.setApiKeyPrefix("Token");
+
+        // Create an instance of the API class
+        DefaultApi apiInstance = new DefaultApi();
+        Hive hive = ; // Hive | 
+
+        try {
+            hive result = apiInstance.hivesPut(hive);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#hivesPut");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-hivesPut-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.DefaultApi;
+
+public class DefaultApiExample {
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        Hive hive = ; // Hive | 
+
+        try {
+            hive result = apiInstance.hivesPut(hive);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#hivesPut");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-hivesPut-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-hivesPut-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: cookieAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"token"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"token"];
+
+
+// Create an instance of the API class
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+Hive *hive = ; //  (optional)
+
+// Update Hive metadata
+[apiInstance hivesPutWith:hive
+              completionHandler: ^(hive output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesPut-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var QueensaverApi = require('queensaver_api');
+var defaultClient = QueensaverApi.ApiClient.instance;
+
+// Configure API key authorization: cookieAuth
+var cookieAuth = defaultClient.authentications['cookieAuth'];
+cookieAuth.apiKey = "YOUR API KEY";
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//cookieAuth.apiKeyPrefix['token'] = "Token";
+
+// Create an instance of the API class
+var api = new QueensaverApi.DefaultApi()
+var opts = {
+  'hive':  // {Hive} 
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.hivesPut(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-hivesPut-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-hivesPut-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class hivesPutExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: cookieAuth
+            Configuration.Default.ApiKey.Add("token", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("token", "Bearer");
+
+            // Create an instance of the API class
+            var apiInstance = new DefaultApi();
+            var hive = new Hive(); // Hive |  (optional) 
+
+            try {
+                // Update Hive metadata
+                hive result = apiInstance.hivesPut(hive);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling DefaultApi.hivesPut: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesPut-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: cookieAuth
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('token', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('token', 'Bearer');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\DefaultApi();
+$hive = ; // Hive | 
+
+try {
+    $result = $api_instance->hivesPut($hive);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->hivesPut: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesPut-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::DefaultApi;
+
+# Configure API key authorization: cookieAuth
+$WWW::OPenAPIClient::Configuration::api_key->{'token'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'token'} = "Bearer";
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::DefaultApi->new();
+my $hive = WWW::OPenAPIClient::Object::Hive->new(); # Hive | 
+
+eval {
+    my $result = $api_instance->hivesPut(hive => $hive);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->hivesPut: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesPut-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: cookieAuth
+openapi_client.configuration.api_key['token'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# openapi_client.configuration.api_key_prefix['token'] = 'Bearer'
+
+# Create an instance of the API class
+api_instance = openapi_client.DefaultApi()
+hive =  # Hive |  (optional)
+
+try:
+    # Update Hive metadata
+    api_response = api_instance.hives_put(hive=hive)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->hivesPut: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-hivesPut-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate DefaultApi;
+
+pub fn main() {
+    let hive = ; // Hive
+
+    let mut context = DefaultApi::Context::default();
+    let result = client.hivesPut(hive, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">hive </td>
+<td>
+<p class="marked"></p>
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/hive"
+      }
+    }
+  }
+};
+
+  var schema = findNode('schema',schemaWrapper).schema;
+  if (!schema) {
+    schema = schemaWrapper.schema;
+  }
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_hivesPut_hive');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_hivesPut_hive"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-Default-hivesPut-title-200"></h3>
+                            <p id="examples-Default-hivesPut-description-200" class="marked"></p>
+                            <script>
+                              var responseDefault200_description = `Returns the updated hive`;
+                              var responseDefault200_description_break = responseDefault200_description.indexOf('\n');
+                              if (responseDefault200_description_break == -1) {
+                                $("#examples-Default-hivesPut-title-200").text("Status: 200 - " + responseDefault200_description);
+                              } else {
+                                $("#examples-Default-hivesPut-title-200").text("Status: 200 - " + responseDefault200_description.substring(0, responseDefault200_description_break));
+                                $("#examples-Default-hivesPut-description-200").html(responseDefault200_description.substring(responseDefault200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-hivesPut-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-Default-hivesPut-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-hivesPut-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-Default-hivesPut-200-schema">
+                                  <div id="responses-Default-hivesPut-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Returns the updated hive",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/hive"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-Default-hivesPut-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-Default-hivesPut-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-Default-hivesPut-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-Default-hivesPut-title-400"></h3>
+                            <p id="examples-Default-hivesPut-description-400" class="marked"></p>
+                            <script>
+                              var responseDefault400_description = `Client error`;
+                              var responseDefault400_description_break = responseDefault400_description.indexOf('\n');
+                              if (responseDefault400_description_break == -1) {
+                                $("#examples-Default-hivesPut-title-400").text("Status: 400 - " + responseDefault400_description);
+                              } else {
+                                $("#examples-Default-hivesPut-title-400").text("Status: 400 - " + responseDefault400_description.substring(0, responseDefault400_description_break));
+                                $("#examples-Default-hivesPut-description-400").html(responseDefault400_description.substring(responseDefault400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-hivesPut-400" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-hivesPut-400-wrapper" style='margin-bottom: 10px;'>
+                            </div>
+                            <h3 id="examples-Default-hivesPut-title-500"></h3>
+                            <p id="examples-Default-hivesPut-description-500" class="marked"></p>
+                            <script>
+                              var responseDefault500_description = `Internal error`;
+                              var responseDefault500_description_break = responseDefault500_description.indexOf('\n');
+                              if (responseDefault500_description_break == -1) {
+                                $("#examples-Default-hivesPut-title-500").text("Status: 500 - " + responseDefault500_description);
+                              } else {
+                                $("#examples-Default-hivesPut-title-500").text("Status: 500 - " + responseDefault500_description.substring(0, responseDefault500_description_break));
+                                $("#examples-Default-hivesPut-description-500").html(responseDefault500_description.substring(responseDefault500_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-Default-hivesPut-500" class="nav nav-tabs nav-tabs-examples" >
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-Default-hivesPut-500-wrapper" style='margin-bottom: 10px;'>
                             </div>
                         </article>
                       </div>

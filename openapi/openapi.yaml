@@ -99,6 +99,75 @@ paths:
         "500":
           description: Internal error
 
+    put:
+      summary: Update Hive metadata
+      description: This updates new hive.
+      security:
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/hive"
+      responses:
+        "200":
+          description: "Returns the updated hive"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/hive"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+
+    post:
+      summary: Create Hive metadata
+      description: This creates a new hive. A hive is a logical representation of a bee hive that can be connected to hardware.
+      security:
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/hive"
+      responses:
+        "200":
+          description: "Returns the created hive"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/hive"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+
+    delete:
+      summary: Delete a Hive
+      description: This deletes a hive.
+      security:
+      - cookieAuth: []
+      parameters:
+      - name: uuid
+        in: query
+        description: The UUID of the hive.
+        required: true
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Returns 200 if the delete was successful"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+
+
 
   /bboxes:
     get:
@@ -323,8 +392,14 @@ components:
                 - Unspecified 
                 description: The format of the frame
                 example: "Dadant"
-                x-protobuf-index: 1
-        
+                x-protobuf-index: 7
+        bhive_id:
+          type: string
+          maxLength: 256
+          description: The ID of beehive electronics (QBox client).
+          example: "829898a53801"
+          x-protobuf-index: 8
+ 
     bbox:
       type: object
       properties:

@@ -30,6 +30,9 @@ type Hive struct {
 	Format string `json:"format,omitempty"`
 
 	Frame []HiveFrame `json:"frame,omitempty"`
+
+	// The ID of beehive electronics (QBox client).
+	BhiveId string `json:"bhive_id,omitempty"`
 }
 
 // AssertHiveRequired checks if the required fields are not zero-ed
