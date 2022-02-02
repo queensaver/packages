@@ -29,19 +29,18 @@ type Hive struct {
 	// The format of the frame
 	Format string `json:"format,omitempty"`
 
-	Frame []HiveFrame `json:"frame,omitempty"`
+	// The number of frames the bee hive has
+	Frames int32 `json:"frames,omitempty"`
 
 	// The ID of beehive electronics (QBox client).
-	BhiveId string `json:"bhive_id,omitempty"`
+	BhiveId string `json:"bhiveId,omitempty"`
+
+	// HTTP response code. Used for internal purposes, will be let out at the API level.
+	HttpReponseCode int32 `json:"httpReponseCode,omitempty"`
 }
 
 // AssertHiveRequired checks if the required fields are not zero-ed
 func AssertHiveRequired(obj Hive) error {
-	for _, el := range obj.Frame {
-		if err := AssertHiveFrameRequired(el); err != nil {
-			return err
-		}
-	}
 	return nil
 }
 

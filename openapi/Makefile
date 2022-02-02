@@ -8,12 +8,37 @@ all:
 	rm golang/go/api_default.go
 	rm golang/main.go
 
-	protoc --proto_path proto \
+	protoc -I proto --proto_path proto \
 		--go_out=paths=source_relative:golang/proto \
-		--go_opt=Mmodels/hive.proto=github.com/queensaver/packages/openapi/golang/proto/models \
-		--go_opt=Mmodels/hive_frame.proto=github.com/queensaver/packages/openapi/golang/proto/models \
-		proto/models/hive.proto proto/models/hive_frame.proto
+		--go_opt=Mmodels/hive.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		proto/models/hive.proto
+
+grpc:
+	~/bin/protoc --proto_path proto \
+		--go_out=paths=source_relative:golang/proto \
+		--go_opt=paths=source_relative \
+		--go_grpc_out=paths=source_relative:golang/proto \
+		--go_grpc_opt=paths=source_relative \
+		--plugin=protoc-gen-go_grpc=/home/wogri/go/bin/protoc-gen-go-grpc \
+		\
+		--go_opt=Mservices/default_service.proto=github.com/queensaver/packages/openapi/golang/proto/services/ \
+		--go_opt=Mmodels/hive.proto.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_opt=Mmodels/bbox_bhive.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_opt=Mmodels/bbox.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_opt=Mmodels/hive.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_opt=Mmodels/user.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_opt=Mmodels/weight.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		\
+		--go_grpc_opt=Mservices/default_service.proto=github.com/queensaver/packages/openapi/golang/proto/services/ \
+		--go_grpc_opt=Mmodels/hive.proto.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_grpc_opt=Mmodels/bbox_bhive.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_grpc_opt=Mmodels/bbox.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_grpc_opt=Mmodels/hive.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_grpc_opt=Mmodels/user.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_grpc_opt=Mmodels/weight.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		\
+		proto/services/default_service.proto
 
 update_and_push: all
 	git commit -am 'openapi updates'
-	git push
+	it push

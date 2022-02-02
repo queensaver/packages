@@ -12,6 +12,7 @@ syntax = "proto3";
 
 package openapi;
 
+go_package "asdf.com";
 
 message HiveFrame {
 

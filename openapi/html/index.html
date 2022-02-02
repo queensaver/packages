@@ -933,31 +933,24 @@ ul.nav-tabs {
       "enum" : [ "Zander", "Dadant" ],
       "x-protobuf-index" : 5
     },
-    "frame" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/components/schemas/hive_frame"
-      },
+    "frames" : {
+      "type" : "integer",
+      "description" : "The number of frames the bee hive has",
+      "example" : 3,
       "x-protobuf-index" : 6
     },
-    "bhive_id" : {
+    "bhiveId" : {
       "maxLength" : 256,
       "type" : "string",
       "description" : "The ID of beehive electronics (QBox client).",
       "example" : "829898a53801",
       "x-protobuf-index" : 8
-    }
-  }
-};
-    defs["hive_frame"] = {
-  "type" : "object",
-  "properties" : {
-    "function" : {
-      "type" : "string",
-      "description" : "The format of the frame",
-      "example" : "Dadant",
-      "enum" : [ "Breed", "Honey", "Unspecified" ],
-      "x-protobuf-index" : 7
+    },
+    "httpReponseCode" : {
+      "type" : "integer",
+      "description" : "HTTP response code. Used for internal purposes, will be let out at the API level.",
+      "example" : 409,
+      "x-protobuf-index" : 9
     }
   }
 };

@@ -322,16 +322,15 @@ components:
       type: object
     hive:
       example:
+        httpReponseCode: 409
         public: true
+        frames: 3
+        bhiveId: 829898a53801
         name: B25
         format: Dadant
         comment: This hive needs to be replaced next year
         uuid: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
-        bhive_id: 829898a53801
         capacity: 10
-        frame:
-        - function: Dadant
-        - function: Dadant
       properties:
         name:
           description: Name of the hive. Can be chosen by the user.
@@ -369,17 +368,23 @@ components:
           example: Dadant
           type: string
           x-protobuf-index: 5
-        frame:
-          items:
-            $ref: '#/components/schemas/hive_frame'
-          type: array
+        frames:
+          description: The number of frames the bee hive has
+          example: 3
+          type: integer
           x-protobuf-index: 6
-        bhive_id:
+        bhiveId:
           description: The ID of beehive electronics (QBox client).
           example: 829898a53801
           maxLength: 256
           type: string
           x-protobuf-index: 8
+        httpReponseCode:
+          description: HTTP response code. Used for internal purposes, will be let
+            out at the API level.
+          example: 409
+          type: integer
+          x-protobuf-index: 9
       type: object
     bbox:
       example:
@@ -432,20 +437,6 @@ components:
       - lastName
       - password
       - username
-      type: object
-    hive_frame:
-      example:
-        function: Dadant
-      properties:
-        function:
-          description: The format of the frame
-          enum:
-          - Breed
-          - Honey
-          - Unspecified
-          example: Dadant
-          type: string
-          x-protobuf-index: 7
       type: object
     bbox_bhive:
       example:
