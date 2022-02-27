@@ -11,8 +11,8 @@ package openapi
 
 type Weight struct {
 
-	// bhive_id to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
-	BhiveId string `json:"bhive_id,omitempty"`
+	// bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
+	BhiveId string `json:"bhiveId,omitempty"`
 
 	// actual measurement of weight
 	Weight float32 `json:"weight,omitempty"`

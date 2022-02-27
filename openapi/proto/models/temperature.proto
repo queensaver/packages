@@ -13,15 +13,18 @@ syntax = "proto3";
 package openapi;
 
 
-message Weight {
+message Temperature {
 
   // bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
-  string bhiveId = 140936307;
+  string bhiveId = 1;
 
-  // actual measurement of weight
-  float weight = 254721417;
+  // actual measurement of the temperature
+  float temperature = 2;
 
   // timestamp of the measurement on one second precision
-  int64 epoch = 96722057;
+  int64 epoch = 3;
+
+  // error that the client received when creating a measurement
+  string error = 4;
 
 }

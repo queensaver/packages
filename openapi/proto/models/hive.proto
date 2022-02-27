@@ -32,8 +32,8 @@ message Hive {
 
   // The format of the frame
   enum FormatEnum {
-    ZANDER = 0;
-    DADANT = 1;
+    FormatEnum_ZANDER = 0;
+    FormatEnum_DADANT = 1;
   }
 
   FormatEnum format = 5;

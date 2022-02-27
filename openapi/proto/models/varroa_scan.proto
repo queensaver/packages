@@ -12,16 +12,19 @@ syntax = "proto3";
 
 package openapi;
 
+import public "models/varroa_scan_metadata.proto";
 
-message Weight {
+message VarroaScan {
 
   // bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
-  string bhiveId = 140936307;
+  string bhiveId = 1;
 
-  // actual measurement of weight
-  float weight = 254721417;
+  // URL to the image of the varroa scan
+  string imageUrl = 2;
 
   // timestamp of the measurement on one second precision
-  int64 epoch = 96722057;
+  int64 epoch = 3;
+
+  repeated VarroaScanMetadata metadata = 4;
 
 }

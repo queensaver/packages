@@ -78,7 +78,7 @@ paths:
         example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
         schema:
           type: string
-      - name: bhive_id
+      - name: bhiveId
         in: query
         description: The Unique ID (Mac Address) of the QBox client. If set, the query will only return the Hive that sits on the QBox client (or nothing if there is no hive associated).
         required: false
@@ -190,6 +190,83 @@ paths:
         "500":
           description: Internal error
 
+  /temperature:
+    get:
+      summary: Get Temperature values 
+      description: This returns temperate values for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called "token". Note that this returns the temperature data for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
+      security:
+      - cookieAuth: []
+
+      parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - name: bhiveId
+        in: query
+        description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+        required: true
+        example: 829898a53801
+        schema:
+          type: string
+      - name: epoch
+        in: query
+        description: The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
+        example: 1639170002
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: secondsInThePast
+        in: query
+        description: How many seconds we go to the past to get the data measurements. 
+        required: true
+        example: 7200
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: "Successfully returned a list of scale measurements"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/getTemperature"
+
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
+    post:
+      summary: Save a new temperature measurement
+      description: This stores a new temperature measurement in the database. Must be authorized wit ha cookie or a token.
+      security:
+      - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/newTemperature"
+      responses:
+        "200":
+          description: "OK"
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
+
   /scale:
     get:
       summary: Get Scale values 
@@ -212,7 +289,7 @@ paths:
         schema:
           type: string
         example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
-      - name: bhive_id
+      - name: bhiveId
         in: query
         description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
         required: true
@@ -221,13 +298,13 @@ paths:
           type: string
       - name: epoch
         in: query
-        description: The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the seconds_in_the_past parameter.
+        description: The Unix Time (epoch) that defines the end time of the scale measurements. The beginning is defined by the secondsInThePast parameter.
         example: 1639170002
         required: true
         schema:
           type: integer
           format: int64
-      - name: seconds_in_the_past
+      - name: secondsInThePast
         in: query
         description: How many seconds we go to the past to get the data measurements. 
         required: true
@@ -250,7 +327,72 @@ paths:
         "500":
           description: Internal error
 
+  /varroa-scan:
+    get:
+      summary: Get Varroa Scan images and metadata
+      description: This returns varroa scan metadata. You can search for varroa scans for a certain, defineable date range. The request needs to send a cookie along with the request. The cookie is stored under the key called "token". Note that this returns the image for a QBox Client (independent of the beeHive), the API call for an actual beeHive is different.
+      security:
+      - cookieAuth: []
 
+      parameters:
+      - in: header
+        name: Q-Token
+        description: Either the cookie or this Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+        required: true
+      - in: cookie
+        name: token
+        description: Either this cookie or the Q-Token must be set to be authorized for the API call.
+        schema:
+          type: string
+        example: 8B0FE5CF-C096-4B3E-8748-27906B4A9449
+      - name: bhiveId
+        in: query
+        description: The Mac Address of the QBox client. You can get all QBox IDs and clients with the /config API call.
+        required: true
+        example: 829898a53801
+        schema:
+          type: string
+      - name: epoch
+        in: query
+        description: The Unix Time (epoch) that defines the end time of the varroa images. The beginning is defined by the secondsInThePast parameter.
+        example: 1639170002
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: uuid
+        in: query
+        description: The UUID of the varra-scan. If not set, the request will return scans in the given time range. If this parameter is given we ignore all time ranges.
+        required: false
+        example: 41C0FE2F-EB0C-45B4-8842-C117E47C35E3
+        schema:
+          type: string
+
+      - name: secondsInThePast
+        in: query
+        description: How many seconds we go to the past to get the data measurements. 
+        required: false 
+        example: 7200
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: "Successfully returns a list of varroa scans"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/varroa-scan"
+
+        "400":
+          description: Client error
+        "500":
+          description: Internal error
 
 components:
 
@@ -296,12 +438,115 @@ components:
       example: 15
       description: ID of the object. The ID is usually determined by the DBMS.
 
+    varroa-scan-metadata:
+      type: object
+      properties:
+        # TODO: more work needed here.
+        class:
+          type: string
+          description: class
+          example: "wing"
+          x-protobuf-index: 1
+
+    varroa-scan:
+      type: object
+      properties:
+        bhiveId:
+          type: string
+          description: bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
+          example: "829898a53801"
+          x-protobuf-index: 1
+        imageUrl:
+          type: string
+          description: URL to the image of the varroa scan
+          example: https://api.queensaver.com/images/1234.jpg
+          x-protobuf-index: 2
+        epoch:
+          type: integer
+          format: int64
+          description: timestamp of the measurement on one second precision
+          example: 1639169129
+          x-protobuf-index: 3
+        metadata:
+          type: array
+          items:
+            $ref: "#/components/schemas/varroa-scan-metadata"
+          x-protobuf-index: 4
+          
+    getTemperature:
+      type: object
+      properties:
+        userId:
+          type: number
+          format: int64
+          description: the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
+          example: 4
+          x-protobuf-index: 1
+        temperatures:
+          type: array
+          items:
+            $ref: "#/components/schemas/temperature"
+          x-protobuf-index: 2
+        error:
+          type: string
+          description: error
+          x-protobuf-index: 3
+        httpReponseCode:
+          type: integer
+          example: 409
+          description: HTTP response code. Used for internal purposes, will be sent out at the API.
+          x-protobuf-index: 4
+            
+    newTemperature:
+      type: object
+      properties:
+        userId:
+          type: number
+          format: int64
+          description: the internal user id of the authenticated user. Will be set internally in the cloud system and does not have an effect if set via the API call as it will be overridden. Don't set this value.
+          example: 4
+          x-protobuf-index: 1
+        temperature:
+          description: the temperature object
+          $ref: "#/components/schemas/temperature"
+          x-protobuf-index: 2
+ 
+    temperature:
+      type: object
+      properties:
+        bhiveId:
+          type: string
+          description: bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
+          example: "829898a53801"
+          x-protobuf-index: 1
+        temperature:
+          type: number
+          format: float
+          description: actual measurement of the temperature
+          example: 13.2345
+          x-protobuf-index: 2
+        epoch:
+          type: integer
+          format: int64
+          description: timestamp of the measurement on one second precision
+          example: 1639169129
+          x-protobuf-index: 3
+        error:
+          type: string
+          description: error that the client received when creating a measurement
+          example: "Sensor error"
+          x-protobuf-index: 4
+      required:
+      - bhiveId
+      - temperature
+      - epoch
+
     weight:
       type: object
       properties:
-        bhive_id:
+        bhiveId:
           type: string
-          description: bhive_id to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
+          description: bhiveId to identify the data source. Might become empty in a future iteration as it's redundant with the query parameter.
           example: "829898a53801"
         weight:
           type: number
@@ -334,7 +579,7 @@ components:
     bhive:
       type: object
       properties:
-        bhive_id:
+        bhiveId:
           type: string
           maxLength: 256
           description: The ID of a beehive. Is unique for that user.
@@ -410,7 +655,7 @@ components:
     bbox:
       type: object
       properties:
-        bbox_id:
+        bboxId:
           type: integer
           minimum: 1
           example: 15
@@ -426,7 +671,7 @@ components:
             #$ref: "#/components/schemas/bhive" # TODO: unsure why this doesn't work
             type: object
             properties:
-              bhive_id:
+              bhiveId:
                 type: string
                 maxLength: 256
                 description: The ID of a beehive. Is unique for that user.

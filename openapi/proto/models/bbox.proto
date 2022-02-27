@@ -17,7 +17,7 @@ import public "models/bbox_bhive.proto";
 message Bbox {
 
   // ID of the object. The ID is usually determined by the DBMS.
-  int32 bboxUnderscoreid = 447761892;
+  int32 bboxId = 321639134;
 
   // A cron type of description of when the sensore measurements are supposed to be done.
   string schedule = 161049962;

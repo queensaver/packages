@@ -12,7 +12,7 @@ package openapi
 type BboxBhive struct {
 
 	// The ID of a beehive. Is unique for that user.
-	BhiveId string `json:"bhive_id,omitempty"`
+	BhiveId string `json:"bhiveId,omitempty"`
 }
 
 // AssertBboxBhiveRequired checks if the required fields are not zero-ed

@@ -12,7 +12,7 @@ package openapi
 type Bbox struct {
 
 	// ID of the object. The ID is usually determined by the DBMS.
-	BboxId int32 `json:"bbox_id,omitempty"`
+	BboxId int32 `json:"bboxId,omitempty"`
 
 	// A cron type of description of when the sensore measurements are supposed to be done.
 	Schedule string `json:"schedule,omitempty"`

@@ -16,6 +16,6 @@ package openapi;
 message BboxBhive {
 
   // The ID of a beehive. Is unique for that user.
-  string bhiveUnderscoreid = 31927995;
+  string bhiveId = 140936307;
 
 }

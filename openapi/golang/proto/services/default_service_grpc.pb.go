@@ -31,7 +31,10 @@ type DefaultServiceClient interface {
 	HivesPut(ctx context.Context, in *HivesPutRequest, opts ...grpc.CallOption) (*models.Hive, error)
 	LoginPost(ctx context.Context, in *LoginPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ScaleGet(ctx context.Context, in *ScaleGetRequest, opts ...grpc.CallOption) (*ScaleGetResponse, error)
+	TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*TemperatureGetResponse, error)
+	TemperaturePost(ctx context.Context, in *TemperaturePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	UserPost(ctx context.Context, in *UserPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	VarroaScanGet(ctx context.Context, in *VarroaScanGetRequest, opts ...grpc.CallOption) (*VarroaScanGetResponse, error)
 }
 
 type defaultServiceClient struct {
@@ -105,9 +108,36 @@ func (c *defaultServiceClient) ScaleGet(ctx context.Context, in *ScaleGetRequest
 	return out, nil
 }
 
+func (c *defaultServiceClient) TemperatureGet(ctx context.Context, in *TemperatureGetRequest, opts ...grpc.CallOption) (*TemperatureGetResponse, error) {
+	out := new(TemperatureGetResponse)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/TemperatureGet", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *defaultServiceClient) TemperaturePost(ctx context.Context, in *TemperaturePostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/TemperaturePost", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *defaultServiceClient) UserPost(ctx context.Context, in *UserPostRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/UserPost", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *defaultServiceClient) VarroaScanGet(ctx context.Context, in *VarroaScanGetRequest, opts ...grpc.CallOption) (*VarroaScanGetResponse, error) {
+	out := new(VarroaScanGetResponse)
+	err := c.cc.Invoke(ctx, "/openapi.services.defaultservice.DefaultService/VarroaScanGet", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -125,7 +155,10 @@ type DefaultServiceServer interface {
 	HivesPut(context.Context, *HivesPutRequest) (*models.Hive, error)
 	LoginPost(context.Context, *LoginPostRequest) (*emptypb.Empty, error)
 	ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error)
+	TemperatureGet(context.Context, *TemperatureGetRequest) (*TemperatureGetResponse, error)
+	TemperaturePost(context.Context, *TemperaturePostRequest) (*emptypb.Empty, error)
 	UserPost(context.Context, *UserPostRequest) (*emptypb.Empty, error)
+	VarroaScanGet(context.Context, *VarroaScanGetRequest) (*VarroaScanGetResponse, error)
 	mustEmbedUnimplementedDefaultServiceServer()
 }
 
@@ -154,8 +187,17 @@ func (UnimplementedDefaultServiceServer) LoginPost(context.Context, *LoginPostRe
 func (UnimplementedDefaultServiceServer) ScaleGet(context.Context, *ScaleGetRequest) (*ScaleGetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ScaleGet not implemented")
 }
+func (UnimplementedDefaultServiceServer) TemperatureGet(context.Context, *TemperatureGetRequest) (*TemperatureGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TemperatureGet not implemented")
+}
+func (UnimplementedDefaultServiceServer) TemperaturePost(context.Context, *TemperaturePostRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TemperaturePost not implemented")
+}
 func (UnimplementedDefaultServiceServer) UserPost(context.Context, *UserPostRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserPost not implemented")
+}
+func (UnimplementedDefaultServiceServer) VarroaScanGet(context.Context, *VarroaScanGetRequest) (*VarroaScanGetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VarroaScanGet not implemented")
 }
 func (UnimplementedDefaultServiceServer) mustEmbedUnimplementedDefaultServiceServer() {}
 
@@ -296,6 +338,42 @@ func _DefaultService_ScaleGet_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DefaultService_TemperatureGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TemperatureGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).TemperatureGet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/TemperatureGet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).TemperatureGet(ctx, req.(*TemperatureGetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DefaultService_TemperaturePost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TemperaturePostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).TemperaturePost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/TemperaturePost",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).TemperaturePost(ctx, req.(*TemperaturePostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DefaultService_UserPost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserPostRequest)
 	if err := dec(in); err != nil {
@@ -310,6 +388,24 @@ func _DefaultService_UserPost_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DefaultServiceServer).UserPost(ctx, req.(*UserPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DefaultService_VarroaScanGet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VarroaScanGetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DefaultServiceServer).VarroaScanGet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/openapi.services.defaultservice.DefaultService/VarroaScanGet",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DefaultServiceServer).VarroaScanGet(ctx, req.(*VarroaScanGetRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -350,8 +446,20 @@ var DefaultService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _DefaultService_ScaleGet_Handler,
 		},
 		{
+			MethodName: "TemperatureGet",
+			Handler:    _DefaultService_TemperatureGet_Handler,
+		},
+		{
+			MethodName: "TemperaturePost",
+			Handler:    _DefaultService_TemperaturePost_Handler,
+		},
+		{
 			MethodName: "UserPost",
 			Handler:    _DefaultService_UserPost_Handler,
+		},
+		{
+			MethodName: "VarroaScanGet",
+			Handler:    _DefaultService_VarroaScanGet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

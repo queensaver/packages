@@ -13,9 +13,9 @@ syntax = "proto3";
 package openapi;
 
 
-message Bhive {
+message VarroaScanMetadata {
 
-  // The ID of a beehive. Is unique for that user.
-  string bhiveId = 140936307;
+  // class
+  string class = 1;
 
 }

@@ -28,6 +28,11 @@ grpc:
 		--go_opt=Mmodels/hive.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
 		--go_opt=Mmodels/user.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
 		--go_opt=Mmodels/weight.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_opt=Mmodels/temperature.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_opt=Mmodels/new_temperature.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_opt=Mmodels/get_temperature.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_opt=Mmodels/varroa_scan.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_opt=Mmodels/varroa_scan_metadata.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
 		\
 		--go_grpc_opt=Mservices/default_service.proto=github.com/queensaver/packages/openapi/golang/proto/services/ \
 		--go_grpc_opt=Mmodels/hive.proto.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
@@ -36,6 +41,11 @@ grpc:
 		--go_grpc_opt=Mmodels/hive.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
 		--go_grpc_opt=Mmodels/user.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
 		--go_grpc_opt=Mmodels/weight.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_grpc_opt=Mmodels/temperature.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_grpc_opt=Mmodels/new_temperature.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_grpc_opt=Mmodels/get_temperature.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_grpc_opt=Mmodels/varroa_scan.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
+		--go_grpc_opt=Mmodels/varroa_scan_metadata.proto=github.com/queensaver/packages/openapi/golang/proto/models/ \
 		\
 		proto/services/default_service.proto
 

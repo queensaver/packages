@@ -27,13 +27,16 @@ type DefaultApiRouter interface {
 	HivesPut(http.ResponseWriter, *http.Request)
 	LoginPost(http.ResponseWriter, *http.Request)
 	ScaleGet(http.ResponseWriter, *http.Request)
+	TemperatureGet(http.ResponseWriter, *http.Request)
+	TemperaturePost(http.ResponseWriter, *http.Request)
 	UserPost(http.ResponseWriter, *http.Request)
+	VarroaScanGet(http.ResponseWriter, *http.Request)
 }
 
 
 // DefaultApiServicer defines the api actions for the DefaultApi service
 // This interface intended to stay up to date with the openapi yaml used to generate it,
-// while the service implementation can ignored with the .openapi-generator-ignore file
+// while the service implementation can be ignored with the .openapi-generator-ignore file
 // and updated with the logic required for the API.
 type DefaultApiServicer interface { 
 	BboxesGet(context.Context) (ImplResponse, error)
@@ -43,5 +46,8 @@ type DefaultApiServicer interface {
 	HivesPut(context.Context, Hive) (ImplResponse, error)
 	LoginPost(context.Context, string, string) (ImplResponse, error)
 	ScaleGet(context.Context, string, string, int64, int64, string) (ImplResponse, error)
+	TemperatureGet(context.Context, string, string, int64, int64, string) (ImplResponse, error)
+	TemperaturePost(context.Context, NewTemperature) (ImplResponse, error)
 	UserPost(context.Context, User) (ImplResponse, error)
+	VarroaScanGet(context.Context, string, string, string, int64, string, int64) (ImplResponse, error)
 }

@@ -142,6 +142,40 @@ func (s *DefaultApiService) ScaleGet(ctx context.Context, qToken string, bhiveId
 	return Response(http.StatusNotImplemented, nil), errors.New("ScaleGet method not implemented")
 }
 
+// TemperatureGet - Get Temperature values
+func (s *DefaultApiService) TemperatureGet(ctx context.Context, qToken string, bhiveId string, epoch int64, secondsInThePast int64, token string) (ImplResponse, error) {
+	// TODO - update TemperatureGet with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, []GetTemperature{}) or use other options such as http.Ok ...
+	//return Response(200, []GetTemperature{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("TemperatureGet method not implemented")
+}
+
+// TemperaturePost - Save a new temperature measurement
+func (s *DefaultApiService) TemperaturePost(ctx context.Context, newTemperature NewTemperature) (ImplResponse, error) {
+	// TODO - update TemperaturePost with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, {}) or use other options such as http.Ok ...
+	//return Response(200, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("TemperaturePost method not implemented")
+}
+
 // UserPost - Create a user
 func (s *DefaultApiService) UserPost(ctx context.Context, user User) (ImplResponse, error) {
 	// TODO - update UserPost with the required logic for this service method.
@@ -154,4 +188,21 @@ func (s *DefaultApiService) UserPost(ctx context.Context, user User) (ImplRespon
 	//return Response(400, string{}), nil
 
 	return Response(http.StatusNotImplemented, nil), errors.New("UserPost method not implemented")
+}
+
+// VarroaScanGet - Get Varroa Scan images and metadata
+func (s *DefaultApiService) VarroaScanGet(ctx context.Context, qToken string, bhiveId string, token string, epoch int64, uuid string, secondsInThePast int64) (ImplResponse, error) {
+	// TODO - update VarroaScanGet with the required logic for this service method.
+	// Add api_default_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
+
+	//TODO: Uncomment the next line to return response Response(200, []VarroaScan{}) or use other options such as http.Ok ...
+	//return Response(200, []VarroaScan{}), nil
+
+	//TODO: Uncomment the next line to return response Response(400, {}) or use other options such as http.Ok ...
+	//return Response(400, nil),nil
+
+	//TODO: Uncomment the next line to return response Response(500, {}) or use other options such as http.Ok ...
+	//return Response(500, nil),nil
+
+	return Response(http.StatusNotImplemented, nil), errors.New("VarroaScanGet method not implemented")
 }
