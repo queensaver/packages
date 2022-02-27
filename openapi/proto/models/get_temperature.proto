@@ -25,6 +25,6 @@ message GetTemperature {
   string error = 3;
 
   // HTTP response code. Used for internal purposes, will be sent out at the API.
-  int32 httpReponseCode = 362682382;
+  int32 httpReponseCode = 4;
 
 }

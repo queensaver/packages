@@ -531,6 +531,7 @@ components:
             \ out at the API."
           example: 409
           type: integer
+          x-protobuf-index: 4
       type: object
     newTemperature:
       properties:

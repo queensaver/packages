@@ -8,7 +8,7 @@ package services
 
 import (
 	context "context"
-	models "github.com/queensaver/packages/openapi/golang/proto/models/"
+	models "github.com/queensaver/packages/openapi/golang/proto/models"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
