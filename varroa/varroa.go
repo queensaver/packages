@@ -49,6 +49,7 @@ func postImage(scan []byte, url string, bhiveId string, epoch int64, token strin
 		return err
 	}
 	req.Header.Set("Content-Type", writer.FormDataContentType())
+  req.Header.Set("Q-Token", token)
 	rsp, _ := client.Do(req)
 	if rsp.StatusCode != http.StatusOK {
 		fmt.Errorf("Request failed with response code: %d", rsp.StatusCode)
