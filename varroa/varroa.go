@@ -11,7 +11,7 @@ import (
 	"net/http"
 )
 
-func postImage(scan []byte, url string, bhiveId string, epoch int64, token string) error {
+func PostImage(scan []byte, url string, bhiveId string, epoch int64, token string) error {
 
 	client := &http.Client{
 		Timeout: 300 * time.Second,
