@@ -8,8 +8,37 @@ import (
   "time"
 
 	"mime/multipart"
+  "encoding/json"
 	"net/http"
+
+	"github.com/queensaver/openapi/golang/proto/services"
 )
+
+type Varroa struct {
+  services.VarroaScanImagePostRequest
+  /*
+  BhiveId: bHiveID,
+  Epoch:   ts,
+  Scan:    image,
+  */
+}
+
+func (v *Varroa) String() ([]byte, error) {
+	return json.MarshalIndent(v, "", "  ")
+}
+
+func (v *Varroa) GenerateUUID() {
+}
+
+func (v *Varroa) GetUUID() string {
+	return ""
+}
+
+func (v *Varroa) ClearUUID() {
+}
+
+func (v *Varroa) SetUUID(u string) {
+}
 
 func PostImage(scan []byte, url string, bhiveId string, epoch int64, token string) error {
 
