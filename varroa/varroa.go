@@ -40,6 +40,14 @@ func (v *Varroa) ClearUUID() {
 func (v *Varroa) SetUUID(u string) {
 }
 
+func (v *Varroa) IsMultipart() bool {
+  return true
+}
+
+func (v *Varroa) Send(url string, token string) error {
+  return PostImage(v.Scan, url, v.BhiveId, v.Epoch, token)
+}
+
 func PostImage(scan []byte, url string, bhiveId string, epoch int64, token string) error {
 
 	client := &http.Client{

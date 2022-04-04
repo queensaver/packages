@@ -37,3 +37,11 @@ func (s *Sound) ClearUUID() {
 func (s *Sound) SetUUID(u string) {
 	s.UUID = u
 }
+
+func (s *Sound) IsMultipart() bool {
+  return false
+}
+
+func (s *Sound) Send(url string, token string) error {
+  return nil
+}

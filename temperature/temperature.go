@@ -34,3 +34,11 @@ func (s *Temperature) ClearUUID() {
 func (s *Temperature) SetUUID(u string) {
   s.UUID = u
 }
+
+func (t *Temperature) IsMultipart() bool {
+  return false
+}
+
+func (t *Temperature) Send(url string, token string) error {
+  return nil
+}

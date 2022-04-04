@@ -34,3 +34,11 @@ func (s *Scale) ClearUUID() {
 func (s *Scale) SetUUID(u string) {
 	s.UUID = u
 }
+
+func (s *Scale) IsMultipart() bool {
+  return false
+}
+
+func (s *Scale) Send(url string, token string) error {
+  return nil
+}
