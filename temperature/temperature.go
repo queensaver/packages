@@ -3,13 +3,12 @@ package temperature
 import (
 	"encoding/json"
 	"github.com/google/uuid"
+
+  "github.com/queensaver/openapi/golang/proto/models"
 )
 
 type Temperature struct {
-	Temperature float64 `json:"temperature,omitempty"`
-	BHiveID     string  `json:"bhiveId,omitempty"` //BHiveID is usually the Mac address of the raspberry pi in the bHive.
-	SensorID    string  `json:"sensorId,omitempty"`
-	Timestamp   int64   `json:"timestamp,omitempty"` //TODO: rename to epoch!
+  models.Temperature
 	Error       string  `json:"error,omitempty"`
 	UUID        string  `json:"uuid,omitempty"`
 }
