@@ -28,7 +28,7 @@ func init() {
 		zaplogfmt.NewEncoder(config),
 		os.Stdout,
 		level,
-	), zap.AddCaller())
+	), zap.AddCaller(), zap.AddCallerSkip(1))
 
 	defer logger.Sync()
 	sugar = logger.Sugar()
