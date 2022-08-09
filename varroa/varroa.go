@@ -11,16 +11,13 @@ import (
   "encoding/json"
 	"net/http"
 
+	"github.com/google/uuid"
 	"github.com/queensaver/openapi/golang/proto/services"
 )
 
 type Varroa struct {
   services.VarroaScanImagePostRequest
-  /*
-  BhiveId: bHiveID,
-  Epoch:   ts,
-  Scan:    image,
-  */
+	UUID        string  `json:"uuid,omitempty"`
 }
 
 func (v *Varroa) String() ([]byte, error) {
@@ -28,16 +25,20 @@ func (v *Varroa) String() ([]byte, error) {
 }
 
 func (v *Varroa) GenerateUUID() {
+	uuid := uuid.New()
+	v.UUID = uuid.String()
 }
 
 func (v *Varroa) GetUUID() string {
-	return ""
+	return v.UUID
 }
 
 func (v *Varroa) ClearUUID() {
+	v.UUID = ""
 }
 
 func (v *Varroa) SetUUID(u string) {
+  v.UUID = u
 }
 
 func (v *Varroa) IsMultipart() bool {
