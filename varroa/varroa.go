@@ -10,6 +10,7 @@ import (
 	"mime/multipart"
   "encoding/json"
 	"net/http"
+  "crypto/tls"
 
 	"github.com/google/uuid"
 	"github.com/queensaver/openapi/golang/proto/services"
@@ -51,6 +52,8 @@ func (v *Varroa) Send(url string, token string) error {
 
 func PostImage(scan []byte, url string, bhiveId string, epoch int64, token string) error {
 
+  // TODO: fix certificate an disable insecure skip verify
+	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	client := &http.Client{
 		Timeout: 300 * time.Second,
 	}
