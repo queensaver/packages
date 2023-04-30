@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"strings"
 	"time"
+	"crypto/tls"
 
 	"github.com/queensaver/packages/logger"
 )
@@ -49,6 +50,8 @@ func getMacAddr() (string, error) {
 }
 
 func GetBHiveConfig(addr string) (*BHive, error) {
+	// TODO: fix certificate an disable insecure skip verify
+	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	httpClient := http.Client{
 		Timeout: time.Second * 180,
 	}
@@ -96,6 +99,8 @@ func GetBHiveConfig(addr string) (*BHive, error) {
 }
 
 func Get(addr string, token string) (*Config, error) {
+	// TODO: fix certificate an disable insecure skip verify
+	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	httpClient := http.Client{
 		Timeout: time.Second * 10,
 	}
