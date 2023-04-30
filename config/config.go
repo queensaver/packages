@@ -50,7 +50,7 @@ func getMacAddr() (string, error) {
 
 func GetBHiveConfig(addr string) (*BHive, error) {
 	httpClient := http.Client{
-		Timeout: time.Second * 10,
+		Timeout: time.Second * 180,
 	}
 
 	req, err := http.NewRequest(http.MethodGet, addr, nil)
