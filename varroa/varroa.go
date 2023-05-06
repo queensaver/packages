@@ -90,7 +90,7 @@ func PostImage(scan []byte, url string, bhiveId string, epoch int64, token strin
 		return err
 	}
 	req.Header.Set("Content-Type", writer.FormDataContentType())
-  req.Header.Set("Q-Token", token)
+  req.Header.Set("registrationId", token)
 	rsp, err := client.Do(req)
   if err != nil {
     return err
