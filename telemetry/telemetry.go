@@ -3,11 +3,11 @@ package telemetry
 import (
 	"encoding/json"
 	"github.com/google/uuid"
-  "github.com/queensaver/openapi/golang/proto/models"
+  "github.com/queensaver/openapi/golang/proto/services"
 )
 
 type Telemetry struct {
-  *models.Telemetry
+  *services.TelemetryResponse
 	BhiveId string `json:"m,omitempty"`
 	Epoch   int64  `json:"e,omitempty"`
 	UUID    string `json:"-"`
