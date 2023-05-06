@@ -7,7 +7,7 @@ import (
 )
 
 type Telemetry struct {
-  *models.TelemetryValues
+  models.TelemetryValues
 	BhiveId string `json:"m,omitempty"`
 	Epoch   int64  `json:"e,omitempty"`
 	UUID    string `json:"-"`
